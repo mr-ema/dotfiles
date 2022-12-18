@@ -1,0 +1,16 @@
+# configuration paths
+alias zshconfig="cd ~/.config/zsh/ && nvim ."
+alias vimconfig="cd ~/.config/nvim/ && nvim ."
+alias tmuxconfig="cd ~/.config/tmux/ && nvim ."
+alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias kittyconfig="cd ~/.config/kitty/ && nvim ."
+
+# others
+alias vim="nvim"
+alias zshsource="source ~/.config/zsh/.zshrc"
+
+# connections [bluetooth, wifi]
+alias headset="bluetoothctl connect 30:53:C1:33:99:7B"
+
+# code paths
+alias gocode="cd ~/Desktop/code"
