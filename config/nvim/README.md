@@ -1,31 +1,38 @@
-# My NeoVim Setup 
+# My NeoVim Setup
+
+## Navigation
+- [Tips](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#tips)
+- [Useful Links](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#useful-links)
+- [Intalled Plugins](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#installed-plugins)
+- [Utils](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#utils)
 
 ## Tips
-- Run `so ~/.config/nvim/lua/kraken/packer.lua | PackerSync` to update or reinstall plugins 
-- Run `Telescope keymaps` to list set keymaps
+- Run `:so ~/.config/nvim/lua/kraken/packer.lua | PackerSync` to update or reinstall plugins 
+- Run `:Telescope keymaps` to list set keymaps
 - Press `<leader>ff` to open telescope and `<leader>cd` to update telescope search path
-- Run `Mason` to list all lsp servers available
+- Run `:Mason` to list all lsp servers available
 - The `.viminfo` is created in `~/.config/nvim/shada/.viminfo` ( see next line ). 
 - You can change the name and behaviour of `.viminfo` in `lua/kraken/set.lua => vim.opt.shada`
 
 ## Useful links
 - [Vim Cheat Sheet](https://vim.rtorr.com/)
 - [NeoVim Documentation](https://neovim.io/doc/)
-- [ThePrimeagen Video](https://www.youtube.com/watch?v=w7i4amO_zaE)
+- [Neovim RC From Scratch (_Video_)](https://www.youtube.com/watch?v=w7i4amO_zaE)
 - [LSP Servers](https://github.com/williamboman/mason.nvim#commands)
 - [LSP Preferences](https://github.com/VonHeikemen/lsp-zero.nvim#choose-your-features)
 
-## Plugins
-- [tokyonight](https://github.com/folke/tokyonight.nvim)
-- [lualine](https://github.com/nvim-lualine/lualine.nvim)
-- [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [telescope](https://github.com/nvim-telescope/telescope.nvim)
-- [harpoon](https://github.com/ThePrimeagen/harpoon)
-- [undotree](https://github.com/mbbill/undotree)
-- [ident-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
-- [lsp-zero](https://github.com/VonHeikemen/lsp-zero.nvim)
-- [zenmode](https://github.com/folke/zen-mode.nvim)
-- [fugitive](https://github.com/tpope/vim-fugitive)
+## Installed Plugins
+- [Tokyonight](https://github.com/folke/tokyonight.nvim)
+- [Lualine](https://github.com/nvim-lualine/lualine.nvim)
+- [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [Telescope](https://github.com/nvim-telescope/telescope.nvim)
+- [Harpoon](https://github.com/ThePrimeagen/harpoon)
+- [Undotree](https://github.com/mbbill/undotree)
+- [Ident-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
+- [Lsp-zero](https://github.com/VonHeikemen/lsp-zero.nvim)
+- [Zenmode](https://github.com/folke/zen-mode.nvim)
+- [Fugitive](https://github.com/tpope/vim-fugitive)
+- [Refactoring](https://github.com/ThePrimeagen/refactoring.nvim#refactoringnvim)
 
 ## Utils
 #### Autoinstall packer
@@ -59,4 +66,4 @@ function M.check()
 end
 
 return M.check()
-```
+`
