@@ -1,23 +1,43 @@
 # Kitty setup
-My personal kitty setup, very simple and minimalist.
+
+**Super Simple And Minimalist Kitty Setup.**
 
 ![Logo](https://github.com/mr-ema/dotfiles/blob/main/config/kitty/wifu/screenshot.png?raw=true)
 
+## Navigation
+
+- [Tips](https://github.com/mr-ema/dotfiles/tree/main/config/kitty#tips)
+- [Useful Links](https://github.com/mr-ema/dotfiles/tree/main/config/kitty#useful-links)
+- [Shortcuts](https://github.com/mr-ema/dotfiles/tree/main/config/kitty#shortcuts)
+- [Code](https://github.com/mr-ema/dotfiles/tree/main/config/kitty#tips)
+
 ## Tips
-- Background images must be `.png`
-- Compress your image to better performance
-- `ctrl+shift+f2` open configuration file
-- `ctrl+shift+f5` source and update configuration changes
-- `ctrl+shift+enter` open a new tab
+
+- Backgrounds must be in `.png` format you can use [jpg2png](https://jpg2png.com/) to convert `.jpg` files
+- Compress your `.png` image to gain huge performance
+
 
 ## Useful Links
+
 - [Compress Images](https://compresspng.com/)
 - [JPG To PNG](https://jpg2png.com/)
 - [Kitty Config](https://sw.kovidgoyal.net/kitty/conf)
 - [Kitty Shortcuts](https://sw.kovidgoyal.net/kitty/overview)
 - [Customize Bottom Bar](https://sw.kovidgoyal.net/kitty/conf/#tab-bar)
 
+
+## Shortcuts
+
+| Action                | Shortcut              |
+| --------------------- | --------------------- |
+| Edit kitty.conf       | `ctrl+shift+f2`       |
+| Reload `kitty.conf`   | `ctrl+shift+f5`       |
+| New Window            | `ctrl+shift+enter`    |
+| New Tab               | `ctrl+shift+t`        |
+| Go To Tab [**n**]     | `kitty_mod+n`         |
+
 ## Code
+
 ```
 # vim:fileencoding=utf-8:foldmethod=marker
 # more options in: https://sw.kovidgoyal.net/kitty/conf/
@@ -39,10 +59,10 @@ italic_font      jetbrains mono italic
 bold_italic_font jetbrains mono bold italic
 
 # Background ------------------------ 
-background_image ./wifu/mayuri.png
+background_image ./wifu/default.png
 background_image_layout scaled
 background_image_linear yes
-background_tint 0.85
+background_tint 0.9
 
 # Window -------------------
 hide_window_decorations yes
