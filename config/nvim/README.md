@@ -1,21 +1,37 @@
-# My NeoVim Setup
+# NeoVim Setup
+Here I have my all my `Neovim` configuration. Feel free to explore and copy whatever you like.
 
 ## Navigation
 - [Tips](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#tips)
+- [My Keymaps](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#my-keymaps)
 - [Useful Links](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#useful-links)
 - [Intalled Plugins](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#installed-plugins)
 - [Utils](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#utils)
 
 ## Tips
-- Run `:so ~/.config/nvim/lua/kraken/packer.lua | PackerSync` to update or reinstall plugins 
 - Run `:Telescope keymaps` to list set keymaps
 - Press `<leader>ff` to open telescope and `<leader>cd` to update telescope search path
 - Run `:Mason` to list all lsp servers available
-- The `.viminfo` is created in `~/.config/nvim/shada/.viminfo` ( see next line ). 
+- The `.viminfo` and `lazy-lock.json` are created in `~/.config/nvim/shada/.viminfo`. 
 - You can change the name and behaviour of `.viminfo` in `lua/kraken/set.lua => vim.opt.shada`
+
+## My Keymaps
+| Action        |       Shortcut        |
+| ------------- | --------------------- |       
+| `<leader>h`   | Toggle Harpoon        |
+| `<leader>a`   | Add File To Harpoon   |
+| `<leader>u`   | Toggle UndoTree       |
+| `<leader>ff`  | Open Telescope        |
+| `<leader>cd`  | Update Telescope Path |
+| `tk`          | Next Tab              |
+| `tj`          | Prev Tab              |
+| `th`          | Head Tab              |
+| `tl`          | Last Tab              |
+
 
 ## Useful links
 - [Vim Cheat Sheet](https://vim.rtorr.com/)
+- [Vim Events Useful For lazy.nvim](https://tech.saigonist.com/b/code/list-all-vim-script-events.html)
 - [NeoVim Documentation](https://neovim.io/doc/)
 - [Neovim RC From Scratch (_Video_)](https://www.youtube.com/watch?v=w7i4amO_zaE)
 - [LSP Servers](https://github.com/williamboman/mason.nvim#commands)
@@ -35,7 +51,7 @@
 - [Refactoring](https://github.com/ThePrimeagen/refactoring.nvim#refactoringnvim)
 
 ## Utils
-#### Autoinstall packer
+#### Autoinstall packer (_deleted from tree since I migrate to [_lazy.nvim_](https://github.com/folke/lazy.nvim)_)
 
 ```lua
 local M = {}
