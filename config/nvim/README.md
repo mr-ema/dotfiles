@@ -10,23 +10,23 @@ Here I have my all my `Neovim` configuration. Feel free to explore and copy what
 
 ## Tips
 - Run `:Telescope keymaps` to list set keymaps
-- Press `<leader>ff` to open telescope and `<leader>cd` to update telescope search path
+- Press `<leader>cd` to update telescope search path
 - Run `:Mason` to list all lsp servers available
 - The `.viminfo` and `lazy-lock.json` are created in `~/.config/nvim/shada/.viminfo`. 
 - You can change the name and behaviour of `.viminfo` in `lua/kraken/set.lua => vim.opt.shada`
 
 ## My Keymaps
-| Action        |       Shortcut        |
-| ------------- | --------------------- |       
-| `<leader>h`   | Toggle Harpoon        |
-| `<leader>a`   | Add File To Harpoon   |
-| `<leader>u`   | Toggle UndoTree       |
-| `<leader>ff`  | Open Telescope        |
-| `<leader>cd`  | Update Telescope Path |
-| `tk`          | Next Tab              |
-| `tj`          | Prev Tab              |
-| `th`          | Head Tab              |
-| `tl`          | Last Tab              |
+|       Action          |       Shortcut        |
+| --------------------- | --------------------- |
+| Toggle Harpoon        | `<leader>h`           |
+| Add File To Harpoon   | `<leader>a`           |
+| Toggle UndoTree       | `<leader>u`           |
+| Open Telescope        |`<leader>ff`           |
+| Update Telescope Path | `<leader>cd`          |
+| Home Tab              | `th`                  |
+| Prev Tab              | `tj`                  |
+| Next Tab              | `tk`                  |
+| Last Tab              | `tl`                  |
 
 
 ## Useful links
