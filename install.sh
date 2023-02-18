@@ -4,7 +4,7 @@
 # dir where your dots files live
 dir=~/.dotfiles
 # files that goes in $HOME
-home_files=(".zshenv")
+home_files=(".zshenv", ".gitconfig")
 # files that goes in $HOME/.config
 config_dirs=("zsh" "nvim" "kitty")
  # dirs that goes in $HOME and are dot dirs. ex: '.bash, .fonts'
