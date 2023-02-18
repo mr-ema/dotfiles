@@ -23,8 +23,10 @@ function Syminator() {
         arr=("$@")
 
         for file in "${arr[@]}"; do
-                if [[ -L "$to/${dot}${file}" ]]; then
-                        echo -e "\t@Link to $to/${dot}${file} already exists"
+                if [ -L "$to/${dot}${file}" ]; then
+                        printf "\t\e[1;36m%s\e[m\n" "[L] Link $to/${dot}${file} already exists"
+                elif [ -d "$to/${dot}${file}" ] || [ -f "$to/${dot}${file}" ]; then
+                        printf "\t\e[1;33m%s\e[m\n" "[F] File $to/${dot}${file} already exists"
                 else
                         ln -sv "$from/$file" "$to/${dot}${file}"
                 fi
