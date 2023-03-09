@@ -1,15 +1,21 @@
 # Zsh custom configuration
 
+</br>
+
 ## Navigation
 - [Getting Started](https://github.com/mr-ema/dotfiles/tree/main/config/zsh#getting-started)
 - [Aliases](https://github.com/mr-ema/dotfiles/tree/main/config/zsh#aliases)
 - [Functions](https://github.com/mr-ema/dotfiles/tree/main/config/zsh#functions)
 - [Useful Links](https://github.com/mr-ema/dotfiles/tree/main/config/zsh#useful-links)
 
+</br>
 
 ## Useful Links
 - [Shell Scripting _Tutorial_](https://www.tutorialspoint.com/unix/shell_scripting.htm)
 - [Classic Shell Scripting _Book_](https://www.amazon.com/Classic-Shell-Scripting-Arnold-Robbins/dp/0596005954)
+
+</br>
+</br>
 
 ## Getting Started
 **An important thing to remember in case that you not using the `.dotfile` installer is that you need to create a `.zshenv` file in `$HOME` with the code below. To get this configuration to work**
@@ -30,6 +36,9 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 export LESSHISTFILE=-
 
 ```
+
+</br>
+
 **After complete the previus step you are ready to edit the `.zshrc`. In case that you don't have installed nim and cargo remove them from `CUSTOM_PATH` variable. Also if you dont want to install oh-my-zsh you need to remove it from the script.**
 ```zsh
 ###--------- PATH --------###
@@ -69,6 +78,8 @@ else
 fi
 ```
 
+</br>
+
 ## Aliases
 **An alias in Bash (and most shells) is a way to run a long command using a short one.** If you repeat a command often in the terminal, an alias can save you a lot of typing. [_More_](https://phoenixnap.com/kb/linux-alias-command)
 
@@ -86,6 +97,8 @@ alias headset="bluetoothctl connect 30:53:C1:33:99:7B"
 ```
 Now after save the alias in the `aliases` file and restart the terminal we can type
 `headset` and it will run `bluetoothctl connect 30:53:C1:33:99:7B`.
+
+</br>
 
 ## Functions
 Shell functions are a way to group commands for later execution using a single name for the group. They are executed just like a "regular" command. When the name of a shell function is used as a simple command name, the list of commands associated with that function name is executed. Shell functions are executed in the current shell context; no new process is created to interpret them. [_More_](https://www.gnu.org/software/bash/manual/html_node/Shell-Functions.html)

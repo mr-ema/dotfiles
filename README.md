@@ -1,21 +1,30 @@
 # DotFiles
 These are my `.Files`. Feel free to take whatever you want.
 
+</br>
 
 ## Quick Navigation
 - [Resources](https://github.com/mr-ema/dotfiles#resources)
 - [Install](https://github.com/mr-ema/dotfiles#resources)
 - [Use Of Install Script](https://github.com/mr-ema/dotfiles#use-of-install-script)
 
+</br>
 
 ## Resources
 - [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
 - [SE-EDU](https://se-education.org/learningresources/contents/dotfiles/Dotfiles.html)
 
+</br>
+</br>
 
 ## Install
+
+</br>
+
 > **Note**
 > For this script to work you must manually remove the folders and files required by the script.
+
+</br>
 
 First clone the repository
 ```
@@ -26,6 +35,8 @@ Then run
 cd ~/.dotfiles && ./install.sh
 ```
 
+</br>
+</br>
 
 ## Use Of Install Script
 
@@ -42,6 +53,7 @@ config_files=("zsh" "nvim" "kitty")                 # files that goes in $HOME/.
 home_dirs=("fonts")                                 # dirs that goes in $HOME and are dot dirs. ex: '.bash, .fonts'
 ```
 
+</br>
 
 ### Sym Links
 This part of the script create [symbolic links](https://www.futurelearn.com/info/courses/linux-for-bioinformatics/0/steps/201767)
@@ -81,4 +93,3 @@ Syminator "$dir/config" "$HOME/.config" "" "${config_dirs[@]}"
 
 echo -e "\n Done"
 ```
-

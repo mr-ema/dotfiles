@@ -1,8 +1,13 @@
 # Kitty setup
 
+</br>
+
 **Super Simple And Minimalist Kitty Setup.**
 
 ![Logo](https://github.com/mr-ema/dotfiles/blob/main/config/kitty/wifu/screenshot.png?raw=true)
+
+</br>
+</br>
 
 ## Navigation
 
@@ -11,11 +16,14 @@
 - [Shortcuts](https://github.com/mr-ema/dotfiles/tree/main/config/kitty#shortcuts)
 - [Code](https://github.com/mr-ema/dotfiles/tree/main/config/kitty#tips)
 
+</br>
+
 ## Tips
 
 - Backgrounds must be in `.png` format you can use [jpg2png](https://jpg2png.com/) to convert `.jpg` files
 - Compress your `.png` image to gain huge performance
 
+</br>
 
 ## Useful Links
 
@@ -25,6 +33,7 @@
 - [Kitty Shortcuts](https://sw.kovidgoyal.net/kitty/overview)
 - [Customize Bottom Bar](https://sw.kovidgoyal.net/kitty/conf/#tab-bar)
 
+</br>
 
 ## Shortcuts
 
@@ -35,6 +44,8 @@
 | New Window            | `ctrl+shift+enter`    |
 | New Tab               | `ctrl+shift+t`        |
 | Go To Tab [**n**]     | `kitty_mod+n`         |
+
+</br>
 
 ## Code
 

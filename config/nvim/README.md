@@ -1,6 +1,8 @@
 # NeoVim Setup
 Here I have my all my `Neovim` configuration. Feel free to explore and copy whatever you like.
 
+</br>
+
 ## Navigation
 - [Tips](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#tips)
 - [My Keymaps](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#my-keymaps)
@@ -8,12 +10,16 @@ Here I have my all my `Neovim` configuration. Feel free to explore and copy what
 - [Intalled Plugins](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#installed-plugins)
 - [Utils](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#utils)
 
+</br>
+
 ## Tips
 - Run `:Telescope keymaps` to list set keymaps
 - Press `<leader>cd` to update telescope search path
 - Run `:Mason` to list all lsp servers available
 - The `.viminfo` and `lazy-lock.json` are created in `~/.config/nvim/shada/.viminfo`. 
 - You can change the name and behaviour of `.viminfo` in `lua/kraken/set.lua => vim.opt.shada`
+
+</br>
 
 ## My Keymaps
 |       Action          |       Shortcut        |
@@ -28,6 +34,7 @@ Here I have my all my `Neovim` configuration. Feel free to explore and copy what
 | Next Tab              | `tk`                  |
 | Last Tab              | `tl`                  |
 
+</br>
 
 ## Useful links
 - [Vim Cheat Sheet](https://vim.rtorr.com/)
@@ -36,6 +43,8 @@ Here I have my all my `Neovim` configuration. Feel free to explore and copy what
 - [Neovim RC From Scratch (_Video_)](https://www.youtube.com/watch?v=w7i4amO_zaE)
 - [LSP Servers](https://github.com/williamboman/mason.nvim#commands)
 - [LSP Preferences](https://github.com/VonHeikemen/lsp-zero.nvim#choose-your-features)
+
+</br>
 
 ## Installed Plugins
 - [Tokyonight](https://github.com/folke/tokyonight.nvim)
@@ -49,6 +58,8 @@ Here I have my all my `Neovim` configuration. Feel free to explore and copy what
 - [Zenmode](https://github.com/folke/zen-mode.nvim)
 - [Fugitive](https://github.com/tpope/vim-fugitive)
 - [Refactoring](https://github.com/ThePrimeagen/refactoring.nvim#refactoringnvim)
+
+</br>
 
 ## Utils
 #### Autoinstall packer (_deleted from tree since I migrate to [_lazy.nvim_](https://github.com/folke/lazy.nvim)_)
