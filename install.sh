@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Variables ------------------------------------------------------------------
 # dir where your dots files live
