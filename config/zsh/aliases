@@ -14,3 +14,6 @@ alias headset="bluetoothctl connect 30:53:C1:33:99:7B"
 
 # code paths
 alias gocode="cd ~/Desktop/code"
+
+# other paths
+alias mynotes="cd ~/Documents/notes/"
