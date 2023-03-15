@@ -46,11 +46,12 @@ cd ~/.dotfiles && ./install.sh
 - `home_dirs`: Dirs that have a dot and goes in $HOME like `.bash .fonts`
 
 ```bash
-# Variables ---------------------------------
-dir=~/.dotfiles                                     # dir where your dots files live
-home_files=(".zshenv")                              # files that goes in $HOME
-config_files=("zsh" "nvim" "kitty")                 # files that goes in $HOME/.config
-home_dirs=("fonts")                                 # dirs that goes in $HOME and are dot dirs. ex: '.bash, .fonts'
+# Variables - (Array Variables Has To Be Separated By A Space)
+
+dir=~/.dotfiles                         # dir where your dots files live
+home_files=".zshenv .gitconfig"         # files that goes in $HOME
+config_files="zsh nvim kitty"           # files that goes in $HOME/.config
+home_dirs="fonts"                       # dirs that goes in $HOME and are dot dirs. ex: '.bash, .fonts'
 ```
 
 </br>
@@ -66,13 +67,11 @@ to `~/.config` and `~/` linking the configuration files inside `.dotfiles`
 # 3. dot:  argument shoud be empty string or a dot '.'
 # The dot argument is in case that the target dir need to have a dot but the source file dont have one.
 function Syminator() {
-        local from="${1}"
-        local to="${2}"
-        local dot="${3}"
-        shift 3         # Shift x arguments to the left
-        arr=("$@")
+        from="${1}"
+        to="${2}"
+        dot="${3}"
 
-        for file in "${arr[@]}"; do
+        for file in ${4}; do
                 if [ -L "$to/${dot}${file}" ]; then
                         printf "\t\e[1;36m%s\e[m\n" "[L] Link $to/${dot}${file} already exists"
                 elif [ -d "$to/${dot}${file}" ] || [ -f "$to/${dot}${file}" ]; then
@@ -85,11 +84,11 @@ function Syminator() {
 
 # Setup SymLinks ------------------------------------------------------------
 echo " Step [1] - Create Symbolic Links -----------------------------"
+
 # Syminator $sorce_dir $target_dir $dot[""|"."] $array_files_names
-Syminator "$dir" "$HOME" "" "${home_files[@]}" 
-Syminator "$dir" "$HOME" "." "${home_dirs[@]}"
-Syminator "$dir/config" "$HOME/.config" "" "${config_dirs[@]}" 
+Syminator "$dir" "$HOME" "" "${home_files}" 
+Syminator "$dir" "$HOME" "." "${home_dirs}"
+Syminator "$dir/config" "$HOME/.config" "" "${config_dirs}" 
 
-
-echo -e "\n Done"
+echo " Done"
 ```
