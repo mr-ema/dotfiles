@@ -22,6 +22,7 @@
 
 - Backgrounds must be in `.png` format you can use [jpg2png](https://jpg2png.com/) to convert `.jpg` files
 - Compress your `.png` image to gain huge performance
+- You can change the background in `custom.conf`
 
 </br>
 
