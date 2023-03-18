@@ -1,2 +1,2 @@
-/wifu
-custom*.conf
+!kitty.conf
+*.conf
