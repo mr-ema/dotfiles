@@ -13,6 +13,7 @@ Here I have my all my `Neovim` configuration. Feel free to explore and copy what
 </br>
 
 ## Tips
+- Run `:TSInstall <language_to_install>` to install syntax highlighting and other features for the specific language
 - Run `:Telescope keymaps` to list set keymaps
 - Press `<leader>cd` to update telescope search path
 - Run `:Mason` to list all lsp servers available
