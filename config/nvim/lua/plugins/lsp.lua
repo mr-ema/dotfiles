@@ -28,7 +28,7 @@ return {
 
         -- when add more, remember have the language installed 
         -- for example if wants install rust_analizer you must have rust installed.
-        lsp.ensure_installed({ 'sumneko_lua' })
+        -- lsp.ensure_installed({})
 
         local cmp = require('cmp')
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
