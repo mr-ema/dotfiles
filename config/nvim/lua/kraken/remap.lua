@@ -11,3 +11,6 @@ vim.keymap.set('n', 'th', '<cmd>tabfirst<cr>')          -- go to first tab
 vim.keymap.set('n', 'tk', '<cmd>tabnext<cr>')           -- go to next tab
 vim.keymap.set('n', 'tj', '<cmd>tabprev<cr>')           -- go to prev tab
 vim.keymap.set('n', 'tl', '<cmd>tablast<cr>')           -- go to last tab
+
+-- utils
+vim.keymap.set('n', 'tt', '<cmd>lua require("utils").toggle_transparency()<cr>') -- toggle theme transparency
