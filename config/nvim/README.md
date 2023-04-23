@@ -13,6 +13,7 @@ Here I have my all my `Neovim` configuration. Feel free to explore and copy what
 </br>
 
 ## Tips
+- Run `:lua require("utils").toggle_tranparency()` to toggle theme transparency
 - Run `:TSInstall <language_to_install>` to install syntax highlighting and other features for the specific language
 - Run `:Telescope keymaps` to list set keymaps
 - Press `<leader>cd` to update telescope search path
@@ -25,6 +26,7 @@ Here I have my all my `Neovim` configuration. Feel free to explore and copy what
 ## My Keymaps
 |       Action          |       Shortcut        |
 | --------------------- | --------------------- |
+| Toggle Transparency   | `<leader>tt`          |
 | Toggle Harpoon        | `<leader>h`           |
 | Add File To Harpoon   | `<leader>a`           |
 | Toggle UndoTree       | `<leader>u`           |
