@@ -13,6 +13,8 @@ Here I have my all my `Neovim` configuration. Feel free to explore and copy what
 </br>
 
 ## Tips
+- Run `:read !<command> <args>` will insert the output of a shell command into vim [_example_](#example-read-command)
+
 - Run `:lua require("utils").toggle_tranparency()` to toggle theme transparency
 - Run `:TSInstall <language_to_install>` to install syntax highlighting and other features for the specific language
 - Run `:Telescope keymaps` to list set keymaps
@@ -96,4 +98,21 @@ function M.check()
 end
 
 return M.check()
-`
+```
+
+</br>
+
+## Examples
+#### Example Read Command
+```
+/*******************************************************************
+ * text generating running `:read !figlet -f small Vim is awesome` *
+ *                                                                 *
+ *   __   ___         _                                            *
+ *   \ \ / (_)_ __   (_)___  __ ___ __ _____ ___ ___ _ __  ___     *
+ *    \ V /| | '  \  | (_-< / _` \ V  V / -_|_-</ _ \ '  \/ -_)    *
+ *     \_/ |_|_|_|_| |_/__/ \__,_|\_/\_/\___/__/\___/_|_|_\___|    *
+ *                                                                 *
+ *******************************************************************/
+```
+
