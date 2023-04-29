@@ -1,6 +1,7 @@
-###--------- PATH --------###
-CUSTOM_PATH=$HOME/.cargo/bin:$HOME/.nimble/bin          # custom $PATH. if not needed remove it from here and the line below
-export PATH=$HOME/bin:/usr/local/bin:$CUSTOM_PATH:$PATH # if you come from bash you might have to change your $PATH
+# custom $PATH. if not needed remove it from here and the line below
+CUSTOM_PATH=$HOME/.local/bin
+# if you come from bash you might have to change your $PATH
+export PATH=$HOME/bin:/usr/local/bin:$CUSTOM_PATH:$PATH 
 
 
 ###------- SOURCE --------### 
@@ -10,7 +11,7 @@ source ~/.config/zsh/functions/*
 
 ###------- EXPORT --------###
 export ZSH="$HOME/.oh-my-zsh"
-export GOPATH="$HOME/Desktop/code/go"
+export GOPATH="$HOME/.local/go"
 
 
 ###------OH-MY-ZSH-------###
