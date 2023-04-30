@@ -4,7 +4,7 @@
 
 **Super Simple And Minimalist Kitty Setup.**
 
-![Logo](https://github.com/mr-ema/dotfiles/blob/main/config/kitty/wifu/screenshot.png?raw=true)
+![Logo](https://github.com/mr-ema/dotfiles/blob/main/config/kitty/bg/screenshot.png?raw=true)
 
 </br>
 </br>
