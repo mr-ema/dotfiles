@@ -42,6 +42,7 @@ Here I have my all my `Neovim` configuration. Feel free to explore and copy what
 </br>
 
 ## Useful links
+- [LSP Keybindings](https://github.com/VonHeikemen/lsp-zero.nvim#keybindings)
 - [Vim Cheat Sheet](https://vim.rtorr.com/)
 - [Vim Events Useful For lazy.nvim](https://tech.saigonist.com/b/code/list-all-vim-script-events.html)
 - [NeoVim Documentation](https://neovim.io/doc/)
