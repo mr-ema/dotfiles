@@ -18,11 +18,17 @@ These are my `.Files`. Feel free to take whatever you want.
 </br>
 
 ## Install
+Before proceeding with the installation, please be aware of the following considerations:
 
-</br>
+1. Backup Creation:
+    - The install.sh script will create a backup of the existing files under the .dotfiles/backup directory.
+    - This backup ensures that you have a copy of the original files before they are overwritten.
 
-> **Note**
-> For this script to work you must manually remove the folders and files required by the script.
+2. File Overwriting:
+    - During the installation process, the script will overwrite the files specified by the script.
+    - It is important to note that the existing versions of these files will be replaced.
+
+Keeping these points in mind, you can proceed with the installation.
 
 </br>
 
@@ -39,20 +45,34 @@ cd ~/.dotfiles && ./install.sh
 </br>
 
 ## Use Of Install Script
+By default, the script will create a backup. To skip the backup process,
+you can use the `--skip-backup` option. Additionally, you can use the
+`--force-copy` option to copy the files instead of creating symbolic
+links. If you need assistance or want to see all available options,
+you can use the `--help` option.
 
 ### Variables
 - `config_files`: An array with the name of your configuration files.
-- `home_files`: The configuration files that should go in your `$HOME` directory. `For example .bashrc`
-- `home_dirs`: Dirs that have a dot and goes in $HOME like `.bash .fonts`
+- `home_files`: files that will be link or copy into `$HOME` dir.
+
+</br>
 
 ```bash
 # Variables - (Array Variables Has To Be Separated By A Space)
 
-dir=~/.dotfiles                         # dir where your dots files live
-home_files=".zshenv .gitconfig"         # files that goes in $HOME
+dot_dir=~/.dotfiles                     # dir where your dots files live
+backup_path=~/.dotfiles/backup          # where make the backup
+
+home_files=".zshenv .gitconfig"         # files or dirs that goes in $HOME
 config_files="zsh nvim kitty"           # files that goes in $HOME/.config
-home_dirs="fonts"                       # dirs that goes in $HOME and are dot dirs. ex: '.bash, .fonts'
 ```
+
+</br>
+
+> __Note__\
+> \
+> By default, the files will be created in the `$HOME` directory and `$HOME/.config`
+> You can modify these paths by replacing them with the desired locations.
 
 </br>
 
@@ -60,35 +80,40 @@ home_dirs="fonts"                       # dirs that goes in $HOME and are dot di
 This part of the script create [symbolic links](https://www.futurelearn.com/info/courses/linux-for-bioinformatics/0/steps/201767)
 to `~/.config` and `~/` linking the configuration files inside `.dotfiles`
 
-```bash
-# Syminator ------------------------------------------------------------------
-# 1. from: argument shoud be the source file
-# 2. to:   argument shoud be the target dir to create a SymLink
-# 3. dot:  argument shoud be empty string or a dot '.'
-# The dot argument is in case that the target dir need to have a dot but the source file dont have one.
-function Syminator() {
-        from="${1}"
-        to="${2}"
-        dot="${3}"
+</br>
 
-        for file in ${4}; do
-                if [ -L "$to/${dot}${file}" ]; then
-                        printf "\t\e[1;36m%s\e[m\n" "[L] Link $to/${dot}${file} already exists"
-                elif [ -d "$to/${dot}${file}" ] || [ -f "$to/${dot}${file}" ]; then
-                        printf "\t\e[1;33m%s\e[m\n" "[F] File $to/${dot}${file} already exists"
+> __Note__\
+> \
+> By default the script will not attempt to remove the symbolic links.
+> You can change that by passing `--rm-symlinks` flag.
+
+</br>
+
+```bash
+syminator() {
+        target_path="${1}"
+        source_path=""
+        file_path=""
+
+        for file_name in ${2}; do
+                file_path=$(echo "${target_path:?}/$file_name" | tr -s '/')
+
+                if [ -L "${file_path}" ] && [ "$rm_symlinks" -eq 0 ]; then
+                        echo "[SYMLINK] TO ${file_path} ALREADY EXISTS"
                 else
-                        ln -sv "$from/$file" "$to/${dot}${file}"
+                        if [ "$backup" -eq 1 ]; then
+                                termibackup "${file_path}"
+                        fi
+
+                        deletetor "${file_path}"
+
+                        source_path=$(find "${dot_dir}" -regex ".*/\(.*${file_name}.*\|.*\.${file_name}.*\)" | head -n 1)
+                        ln -sv "${source_path}" "${file_path}"
                 fi
         done
 }
 
-# Setup SymLinks ------------------------------------------------------------
-echo " Step [1] - Create Symbolic Links -----------------------------"
-
-# Syminator $sorce_dir $target_dir $dot[""|"."] $array_files_names
-Syminator "$dir" "$HOME" "" "${home_files}" 
-Syminator "$dir" "$HOME" "." "${home_dirs}"
-Syminator "$dir/config" "$HOME/.config" "" "${config_dirs}" 
-
-echo " Done"
+echo "[CREATING SYMBOLIC LINKS]........................."
+syminator "$HOME/.config" "$config_dirs"
+syminator "$HOME" "$home_files"
 ```
