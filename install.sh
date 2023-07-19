@@ -1,42 +1,143 @@
-#! /bin/sh
+#!/bin/sh
 
-# Variables ------------------------------------------------------------------
-# dir where your dots files live
-dir=~/.dotfiles
-# files that goes in $HOME
-home_files=".zshenv .gitconfig"
-# files that goes in $HOME/.config
+dot_dir=$HOME/.dotfiles # where the dotfiles are
+
+# arguments
+backup=1        # backup by default
+rm_symlinks=0   # not remove symbolic links by default
+use_copy=0      # use symbolic link by default
+
+backup_path=$HOME/.dotfiles/backup
+backup_path="$backup_path/$(date +%H-%M-%S)"
+
+# names of files to symlink or copy ( the dot is optional if you remove it it will link as 'fonts' )
+home_files=".zshenv .gitconfig .fonts"
 config_dirs="zsh nvim kitty"
- # dirs that goes in $HOME and are dot dirs. ex: '.bash, .fonts'
-home_dirs="fonts"
 
-# Syminator ------------------------------------------------------------------
-# 1. from: argument shoud be the source file
-# 2. to:   argument shoud be the target dir to create a SymLink
-# 3. dot:  argument shoud be empty string or a dot '.'
-# The dot argument is in case that the target dir need to have a dot but the source file dont have one.
-Syminator() {
-        from="${1}"
-        to="${2}"
-        dot="${3}"
+usage() {
+        echo " Usage: $0 [arg_1 ... arg_n]"
+        echo " Create symlinks or copy dotfiles to the target directories defined in the script."
+        echo ""
+        echo " Options:"
+        echo "   --skip-backup       Skip creating a backup of existing files."
+        echo "   --rm-symlinks       Remove symbolic links if already exists."
+        echo "   --force-copy        Use copy instead of symbolic link."
+}
 
-        for file in ${4}; do
-                if [ -L "$to/${dot}${file}" ]; then
-                        printf "\t\e[1;36m%s\e[m\n" "[L] Link $to/${dot}${file} already exists"
-                elif [ -d "$to/${dot}${file}" ] || [ -f "$to/${dot}${file}" ]; then
-                        printf "\t\e[1;33m%s\e[m\n" "[F] File $to/${dot}${file} already exists"
+for arg in "$@"; do
+        case $arg in
+                "--help")
+                        usage
+                        exit 0
+                ;;
+                "--skip-backup")
+                        backup=0
+                ;;
+                "--rm-symlinks")
+                        rm_symlinks=1
+                ;;
+                "--force-copy")
+                        use_copy=1
+                ;;
+                *)
+                        echo "Unknown argument: $arg"
+                        exit 1
+                ;;
+        esac
+done
+
+deletetor() {
+        file_path="$1"
+
+        if [ "$file_path" = "/" ]; then
+                echo "[REMOVE] REMOVE FROM '/' IS NOT ALLOWED"
+        else
+                if [ -L "$file_path" ]; then
+                        rm "$file_path"
+                        echo "[REMOVE] SYMLINK $file_path"
+                elif [ -d "$file_path" ]; then
+                        rm -r "$file_path"
+                        echo "[REMOVE] DIR $file_path"
+                elif [ -f "$file_path" ]; then
+                        rm "$file_path"
+                        echo "[REMOVE] FILE $file_path"
+                fi
+        fi
+}
+
+termibackup() {
+        file_path="$1"
+
+        if [ -L "$file_path" ]; then
+                return
+        elif [ -d "$file_path" ]; then
+                mkdir -p "$backup_path"
+
+                cp -r "$file_path" "$backup_path"
+                echo "[BACKUP] DIR $file_path IN $backup_path"
+        elif [ -f "$file_path" ]; then
+                mkdir -p "$backup_path"
+
+                cp "$file_path" "$backup_path"
+                echo "[BACKUP] FILE $file_path IN $backup_path"
+        fi
+}
+
+copynator() {
+        target_path="${1}"
+        source_path=""
+        file_path=""
+
+        for file_name in ${2}; do
+                file_path=$(echo "${target_path:?}/$file_name" | tr -s '/')
+                source_path=$(find "${dot_dir}" -regex ".*/\(.*${file_name}.*\|.*\.${file_name}.*\)" | head -n 1)
+
+                if [ "$backup" -eq 1 ]; then
+                        termibackup "${file_path}"
+                fi
+
+                deletetor "${file_path}"
+
+                if [ -d "${source_path}" ]; then
+                        cp -r "${source_path}" "${file_path}"
+                        echo "[COPY] DIR ${source_path} TO ${file_path}"
                 else
-                        ln -sv "$from/$file" "$to/${dot}${file}"
+                        cp "${source_path}" "${file_path}"
+                        echo "[COPY] FILE ${source_path} TO ${file_path}"
                 fi
         done
 }
 
-# Setup SymLinks ------------------------------------------------------------
-echo " Step [1] - Create Symbolic Links -----------------------------"
+syminator() {
+        target_path="${1}"
+        source_path=""
+        file_path=""
 
-# Syminator $sorce_dir $target_dir $dot[""|"."] $array_files_names
-Syminator "$dir" "$HOME" "" "${home_files}" 
-Syminator "$dir" "$HOME" "." "${home_dirs}"
-Syminator "$dir/config" "$HOME/.config" "" "${config_dirs}" 
+        for file_name in ${2}; do
+                file_path=$(echo "${target_path:?}/$file_name" | tr -s '/')
 
-echo " Done"
+                if [ -L "${file_path}" ] && [ "$rm_symlinks" -eq 0 ]; then
+                        echo "[SYMLINK] TO ${file_path} ALREADY EXISTS"
+                else
+                        if [ "$backup" -eq 1 ]; then
+                                termibackup "${file_path}"
+                        fi
+
+                        deletetor "${file_path}"
+
+                        source_path=$(find "${dot_dir}" -regex ".*/\(.*${file_name}.*\|.*\.${file_name}.*\)" | head -n 1)
+                        ln -sv "${source_path}" "${file_path}"
+                fi
+        done
+}
+
+# Check if 'ln' command exists
+if command -v ln > /dev/null 2>&1 && [ "$use_copy" -eq 0 ]; then
+        echo "[CREATING SYMBOLIC LINKS]........................."
+        syminator "$HOME/.config" "$config_dirs"
+        syminator "$HOME" "$home_files"
+else
+        echo "[COPING DOTFILES]................................."
+        copynator "$HOME/.config" "$config_dirs"
+        copynator "$HOME" "$home_files"
+fi
