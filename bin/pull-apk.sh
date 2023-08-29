@@ -15,29 +15,33 @@
 # OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 # -----------------------------------------------------------------------------
 
+usage() {
+        name=$(basename "$0")
+
+        echo "Usage:"
+        echo "  $name <apk_name> <output_dir> [args...]"
+        echo "  $name <apk_name> <output_dir> -s XXXXXXXXXX"
+        echo "Automatically pull an apk using adb tool."
+        echo ""
+        echo "Options:"
+        echo "  -h, --help              Display this help message"
+        echo "  -s <serial_number>      Specify the device serial number"
+}
+
+if [ "$#" -lt 2 ]; then
+        usage
+        exit 1
+fi
+
+# Variables
 adb_args=""
 pkg_name=""
 output_dir=""
 pkg_path=""
 
-usage() {
-        echo "Usage:"
-        echo "  $0 <package_name> <output_dir> [args...]"
-        echo "  $0 <package_name> <output_dir> -s XXXXXXXXXX"
-        echo "Automatically pull an apk using adb tool."
-        echo ""
-        echo " Options:"
-        echo "   -h, --help              Display this help message"
-        echo "   -s <serial_number>      Specify the device serial number"
-}
-
+# Check if adb is installed
 if ! command -v adb > /dev/null 2>&1; then
         echo "ADB is not installed. Please install Android SDK Platform Tools." >&2
-        exit 1
-fi
-
-if [ "$#" -lt 2 ]; then
-        usage
         exit 1
 fi
 
@@ -47,6 +51,7 @@ if [ -z "$(adb devices | grep -w 'device')" ]; then
         exit 1
 fi
 
+# Parse arguments
 pkg_name=$1
 output_dir=$2
 shift 2
