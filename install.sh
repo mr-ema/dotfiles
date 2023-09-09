@@ -2,10 +2,10 @@
 
 dot_dir=$HOME/.dotfiles # where the dotfiles are
 
-# arguments
-backup=1        # backup by default
-rm_symlinks=0   # not remove symbolic links by default
-use_copy=0      # use symbolic link by default
+# arguments flags
+backup=1
+rm_symlinks=0
+use_copy=0
 
 backup_path=$HOME/.dotfiles/backup
 backup_path="$backup_path/$(date +%H-%M-%S)"
@@ -15,7 +15,9 @@ home_files=".zshenv .gitconfig .fonts"
 config_dirs="zsh nvim kitty"
 
 usage() {
-        echo " Usage: $0 [arg_1 ... arg_n]"
+        name=$(basename "$0")
+
+        echo " Usage: $name [arg_1 ... arg_n]"
         echo " Create symlinks or copy dotfiles to the target directories defined in the script."
         echo ""
         echo " Options:"
@@ -65,7 +67,7 @@ deletetor() {
         fi
 }
 
-termibackup() {
+makebackup() {
         file_path="$1"
 
         if [ -L "$file_path" ]; then
@@ -93,7 +95,7 @@ copynator() {
                 source_path=$(find "${dot_dir}" -regex ".*/\(.*${file_name}.*\|.*\.${file_name}.*\)" | head -n 1)
 
                 if [ "$backup" -eq 1 ]; then
-                        termibackup "${file_path}"
+                        makebackup "${file_path}"
                 fi
 
                 deletetor "${file_path}"
@@ -120,7 +122,7 @@ syminator() {
                         echo "[SYMLINK] TO ${file_path} ALREADY EXISTS"
                 else
                         if [ "$backup" -eq 1 ]; then
-                                termibackup "${file_path}"
+                                makebackup "${file_path}"
                         fi
 
                         deletetor "${file_path}"
@@ -137,7 +139,7 @@ if command -v ln > /dev/null 2>&1 && [ "$use_copy" -eq 0 ]; then
         syminator "$HOME/.config" "$config_dirs"
         syminator "$HOME" "$home_files"
 else
-        echo "[COPING DOTFILES]................................."
+        echo "[COPYING DOTFILES]................................"
         copynator "$HOME/.config" "$config_dirs"
         copynator "$HOME" "$home_files"
 fi
