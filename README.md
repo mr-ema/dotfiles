@@ -4,7 +4,6 @@ These are my `.Files`. Feel free to take whatever you want.
 </br>
 
 ## Quick Navigation
-- [Resources](https://github.com/mr-ema/dotfiles#resources)
 - [Install](https://github.com/mr-ema/dotfiles#resources)
 - [Use Of Install Script](https://github.com/mr-ema/dotfiles#use-of-install-script)
 
@@ -13,6 +12,7 @@ These are my `.Files`. Feel free to take whatever you want.
 ## Resources
 - [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
 - [SE-EDU](https://se-education.org/learningresources/contents/dotfiles/Dotfiles.html)
+- [Shell Check](https://www.shellcheck.net/)
 
 </br>
 </br>
@@ -90,6 +90,15 @@ to `~/.config` and `~/` linking the configuration files inside `.dotfiles`
 </br>
 
 ```bash
+find_dotfile() {
+        file_name="$1"
+        file_name=$(echo "$file_name" | tr -d '.')
+
+        path=$(find "${dot_dir}" -name "${file_name}" -o -name ".${file_name}" | head -n 1)
+
+        echo "$path"
+}
+
 syminator() {
         target_path="${1}"
         source_path=""
@@ -102,12 +111,13 @@ syminator() {
                         echo "[SYMLINK] TO ${file_path} ALREADY EXISTS"
                 else
                         if [ "$backup" -eq 1 ]; then
-                                termibackup "${file_path}"
+                                makebackup "${file_path}"
                         fi
 
                         deletetor "${file_path}"
 
-                        source_path=$(find "${dot_dir}" -regex ".*/\(.*${file_name}.*\|.*\.${file_name}.*\)" | head -n 1)
+                        source_path=$(find_dotfile "${file_name}")
+                        echo "$file_name" > /dev/pts/0
                         ln -sv "${source_path}" "${file_path}"
                 fi
         done
