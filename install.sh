@@ -1,17 +1,17 @@
 #!/bin/sh
 
-dot_dir=$HOME/.dotfiles # where the dotfiles are
+dot_dir="$HOME/.dotfiles" # where the dotfiles are
 
 # arguments flags
 backup=1
 rm_symlinks=0
 use_copy=0
 
-backup_path=$HOME/.dotfiles/backup
-backup_path="$backup_path/$(date +%H-%M-%S)"
+backup_dir="$dot_dir/backup"
+backup_path="$backup_dir/$(date +%H-%M-%S)"
 
 # names of files to symlink or copy ( the dot is optional if you remove it it will link as 'fonts' )
-home_files=".zshenv .gitconfig .fonts"
+home_files=".zshenv .gitconfig .fonts .env"
 config_dirs="zsh nvim kitty"
 
 usage() {
@@ -24,11 +24,16 @@ usage() {
         echo "   --skip-backup       Skip creating a backup of existing files."
         echo "   --rm-symlinks       Remove symbolic links if already exists."
         echo "   --force-copy        Use copy instead of symbolic link."
+        echo ""
+        echo " Defaults:"
+        echo "   - Backups are created for existing non-symbolic link files."
+        echo "   - Backup path: '$backup_dir'"
+        echo "   - Dotfiles path: '$dot_dir'"
 }
 
 for arg in "$@"; do
         case $arg in
-                "--help")
+                "--help" | "-h")
                         usage
                         exit 0
                 ;;
@@ -67,6 +72,15 @@ deletetor() {
         fi
 }
 
+find_dotfile() {
+        file_name="$1"
+        file_name=$(echo "$file_name" | tr -d '.')
+
+        path=$(find "${dot_dir}" -name "${file_name}" -o -name ".${file_name}" | head -n 1)
+
+        echo "$path"
+}
+
 makebackup() {
         file_path="$1"
 
@@ -92,7 +106,7 @@ copynator() {
 
         for file_name in ${2}; do
                 file_path=$(echo "${target_path:?}/$file_name" | tr -s '/')
-                source_path=$(find "${dot_dir}" -regex ".*/\(.*${file_name}.*\|.*\.${file_name}.*\)" | head -n 1)
+                source_path=$(find_dotfile "${file_name}")
 
                 if [ "$backup" -eq 1 ]; then
                         makebackup "${file_path}"
@@ -127,7 +141,8 @@ syminator() {
 
                         deletetor "${file_path}"
 
-                        source_path=$(find "${dot_dir}" -regex ".*/\(.*${file_name}.*\|.*\.${file_name}.*\)" | head -n 1)
+                        source_path=$(find_dotfile "${file_name}")
+                        echo "$file_name" > /dev/pts/0
                         ln -sv "${source_path}" "${file_path}"
                 fi
         done
