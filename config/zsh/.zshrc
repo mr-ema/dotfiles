@@ -1,24 +1,14 @@
-# custom $PATH. if not needed remove it from here and the line below
-CUSTOM_PATH=$HOME/.local/bin
+###------- SOURCE --------### 
+source "$HOME/.env"
+source "$ZDOTDIR/aliases"
+source "$ZDOTDIR/functions"/*
+
 # if you come from bash you might have to change your $PATH
 export PATH=$HOME/bin:/usr/local/bin:$CUSTOM_PATH:$PATH 
-
-
-###------- SOURCE --------### 
-source ~/.config/zsh/aliases
-source ~/.config/zsh/functions/*
-
-
-###------- EXPORT --------###
-export ZSH="$HOME/.oh-my-zsh"
-export GOPATH="$HOME/.local/go"
-
 
 ###------OH-MY-ZSH-------###
 # REMOVE IF YOU DONT WANT OH-MY-ZSH
 if [[ -f /$ZSH/oh-my-zsh.sh ]]; then
-
-        ZSH_THEME="robbyrussell"
         zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
         plugins=(git)

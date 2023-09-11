@@ -1,0 +1,8 @@
+# paths
+export ZSH="$HOME/.oh-my-zsh"
+export GOPATH="$HOME/.local/go"
+export GEM_PATH="$HOME/.gem"
+export BUN_INSTALL="$HOME/.bun"
+export ZSH_THEME="robbyrussell"
+
+export CUSTOM_PATH=$HOME/.local/bin:$BUN_INSTALL:$GEM_PATH:$GOPATH
