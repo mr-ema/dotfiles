@@ -61,7 +61,7 @@ you can use the `--help` option.
 # Variables - (Array Variables Has To Be Separated By A Space)
 
 dot_dir=~/.dotfiles                     # dir where your dots files live
-backup_path=~/.dotfiles/backup          # where make the backup
+backup_dir=~/.dotfiles/backup          # where make the backup
 
 home_files=".zshenv .gitconfig"         # files or dirs that goes in $HOME
 config_files="zsh nvim kitty"           # files that goes in $HOME/.config
@@ -117,7 +117,6 @@ syminator() {
                         deletetor "${file_path}"
 
                         source_path=$(find_dotfile "${file_name}")
-                        echo "$file_name" > /dev/pts/0
                         ln -sv "${source_path}" "${file_path}"
                 fi
         done
