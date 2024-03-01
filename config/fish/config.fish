@@ -1,4 +1,8 @@
 if true
+    fish_add_path -g "$HOME/bin"
+end
+
+if true
     # configuration paths
     abbr --add zshconfig    "cd ~/.config/zsh/ && nvim ."
     abbr --add vimconfig    "cd ~/.config/nvim/ && nvim ."

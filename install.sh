@@ -11,8 +11,8 @@ backup_dir="$dot_dir/backup"
 backup_path="$backup_dir/$(date +%H-%M-%S)"
 
 # names of files to symlink or copy ( the dot is optional if you remove it it will link as 'fonts' )
-home_files=".zshenv .gitconfig .fonts .env"
-config_dirs="zsh nvim kitty"
+home_files=".zshenv .gitconfig .fonts"
+config_dirs="zsh fish nvim kitty termux"
 
 usage() {
         name=$(basename "$0")

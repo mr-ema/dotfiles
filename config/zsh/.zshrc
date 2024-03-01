@@ -1,13 +1,19 @@
-###------- SOURCE --------### 
-source "$HOME/.env"
+### ------- SOURCE -------- ### 
 source "$ZDOTDIR/aliases"
 source "$ZDOTDIR/functions"/*
 
-# if you come from bash you might have to change your $PATH
-export PATH=$HOME/bin:/usr/local/bin:$CUSTOM_PATH:$PATH 
+### ------- EXPORT -------- ### 
+export GOPATH="$HOME/.local/go"
+export GEM_PATH="$HOME/.gem"
+export BUN_INSTALL="$HOME/.bun"
 
-###------OH-MY-ZSH-------###
-# REMOVE IF YOU DONT WANT OH-MY-ZSH
+export ZSH="$HOME/.oh-my-zsh"
+export ZSH_THEME="robbyrussell"
+
+# If you come from bash you might have to change your $PATH
+export PATH=$PATH:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$BUN_INSTALL/bin:$GEM_PATH/bin/:$GOPATH/bin
+
+### ------ OH MY ZSH ------- ### [REMOVE IF YOU DONT WANT OH-MY-ZSH]
 if [[ -f /$ZSH/oh-my-zsh.sh ]]; then
         zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
