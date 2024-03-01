@@ -13,6 +13,27 @@ These are my `.Files`. Feel free to take whatever you want.
 - [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
 - [SE-EDU](https://se-education.org/learningresources/contents/dotfiles/Dotfiles.html)
 - [Shell Check](https://www.shellcheck.net/)
+- [Fish Cheat Sheet](https://devhints.io/fish-shell)
+
+</br>
+</br>
+
+## Save/Load Gnome Settings
+To save all your GNOME settings, you can do
+```
+dconf dump / > gnome_settings.ini
+```
+
+To load them back:
+```
+dconf load / < gnome_settings.ini
+```
+
+If you only want to save your keybindings, you will need to provide the path to \
+the keybindings, which are usually stored under `/org/gnome/desktop/wm/keybindings`.
+```
+dconf dump /org/gnome/desktop/wm/keybindings > gnome_keybindings
+```
 
 </br>
 </br>
