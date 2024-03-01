@@ -3,10 +3,10 @@
 </br>
 
 ## Navigation
-- [Getting Started](https://github.com/mr-ema/dotfiles/tree/main/config/zsh#getting-started)
-- [Aliases](https://github.com/mr-ema/dotfiles/tree/main/config/zsh#aliases)
-- [Functions](https://github.com/mr-ema/dotfiles/tree/main/config/zsh#functions)
-- [Useful Links](https://github.com/mr-ema/dotfiles/tree/main/config/zsh#useful-links)
+- [Getting Started](#getting-started)
+- [Aliases](#aliases)
+- [Functions](#functions)
+- [Useful Links](#useful-links)
 
 </br>
 

@@ -11,9 +11,9 @@
 
 ## Navigation
 
-- [Tips](https://github.com/mr-ema/dotfiles/tree/main/config/kitty#tips)
-- [Useful Links](https://github.com/mr-ema/dotfiles/tree/main/config/kitty#useful-links)
-- [Shortcuts](https://github.com/mr-ema/dotfiles/tree/main/config/kitty#shortcuts)
+- [Tips](#tips)
+- [Useful Links](#useful-links)
+- [Shortcuts](#shortcuts)
 
 </br>
 

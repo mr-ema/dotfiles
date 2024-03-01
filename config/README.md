@@ -14,7 +14,7 @@ Here I have all my configurations files like editor preferences, shell custom al
 </br>
 
 ## Fish
-**fish is a Unix shell with a focus on interactivity and usability**. Fish is designed to give the user features by default, rather than by configuration. Fish is considered an exotic shell since it does not adhere to POSIX shell standards, at the discretion of the maintainers. [_Wikipedia_](https://en.wikipedia.org/wiki/Fish_(Unix_shell))
+**Fish is a Unix shell with a focus on interactivity and usability**. Fish is designed to give the user features by default, rather than by configuration. Fish is considered an exotic shell since it does not adhere to POSIX shell standards, at the discretion of the maintainers. [_Wikipedia_](https://en.wikipedia.org/wiki/Fish_(Unix_shell))
 - [Official Website](https://fishshell.com/)
 - [My Fish Setup](./fish)
 

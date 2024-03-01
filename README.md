@@ -4,8 +4,8 @@ These are my `.Files`. Feel free to take whatever you want.
 </br>
 
 ## Quick Navigation
-- [Install](https://github.com/mr-ema/dotfiles#resources)
-- [Use Of Install Script](https://github.com/mr-ema/dotfiles#use-of-install-script)
+- [Install](#resources)
+- [Use Of Install Script](#use-of-install-script)
 
 </br>
 

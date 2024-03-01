@@ -4,11 +4,11 @@ Here I have my all my `Neovim` configuration. Feel free to explore and copy what
 </br>
 
 ## Navigation
-- [Tips](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#tips)
-- [My Keymaps](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#my-keymaps)
-- [Useful Links](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#useful-links)
-- [Intalled Plugins](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#installed-plugins)
-- [Utils](https://github.com/mr-ema/dotfiles/tree/main/config/nvim#utils)
+- [Tips](#tips)
+- [My Keymaps](#my-keymaps)
+- [Useful Links](#useful-links)
+- [Intalled Plugins](#installed-plugins)
+- [Utils](#utils)
 
 </br>
 
