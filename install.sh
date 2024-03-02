@@ -1,56 +1,207 @@
 #!/bin/sh
 
+# -----------------------------------------------------------------------------
+# Zero-Clause BSD
+#
+# Permission to use, copy, modify, and/or distribute this software for
+# any purpose with or without fee is hereby granted.
+# 
+# THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL
+# WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
+# OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE
+# FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY
+# DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
+# AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
+# OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+# -----------------------------------------------------------------------------
+
 dot_dir="$HOME/.dotfiles" # where the dotfiles are
 
 # arguments flags
 backup=1
-rm_symlinks=0
+recreate_symlinks=0
 use_copy=0
+should_remove_files=0
 
-backup_dir="$dot_dir/backup"
-backup_path="$backup_dir/$(date +%H-%M-%S)"
+backup_path="$dot_dir/backup"
+backup_file="$backup_path/$(date +%H-%M-%S)"
 
 # names of files to symlink or copy ( the dot is optional if you remove it it will link as 'fonts' )
 home_files=".zshenv .gitconfig .fonts"
-config_dirs="zsh fish nvim kitty termux"
+config_files="zsh fish nvim kitty tmux"
 
 usage() {
         name=$(basename "$0")
 
-        echo " Usage: $name [arg_1 ... arg_n]"
-        echo " Create symlinks or copy dotfiles to the target directories defined in the script."
+        echo " $name [OPTIONS...]"
         echo ""
-        echo " Options:"
-        echo "   --skip-backup       Skip creating a backup of existing files."
-        echo "   --rm-symlinks       Remove symbolic links if already exists."
-        echo "   --force-copy        Use copy instead of symbolic link."
+        echo " DESCRIPTION"
+        echo "  This script facilitates the management of dotfiles by creating"
+        echo "  symbolic links to target files defined within the script."
+        echo "  If symbolic links are unavailable, files are copied directly."
+        echo "  Additionally, the script allows for file exclusion using the '--exclude' option."
+        echo "  You can get a list of excludable files by using '--list-exclude' option."
         echo ""
-        echo " Defaults:"
-        echo "   - Backups are created for existing non-symbolic link files."
-        echo "   - Backup path: '$backup_dir'"
-        echo "   - Dotfiles path: '$dot_dir'"
+        echo ""
+        echo " The following options are available:"
+        echo ""
+        echo "  --skip-backup"
+        echo "      Skip creating a backup of existing files."
+        echo ""
+        echo "  --recreate-symlinks"
+        echo "      By default, existing symbolic links are skipped during symlink creation."
+        echo "      Use this option to force the script to recreate symbolic links, even if they already exist."
+        echo ""
+        echo "  --force-copy"
+        echo "      Use copy instead of symbolic link. This will use 'cp' command"
+        echo "      which will overwrite your files. By default, a backup will be made"
+        echo "      which can be omitted by passing '--skip-backup' option."
+        echo ""
+        echo "  --backup-path [$backup_path]"
+        echo "      Set a backup path the default is '$backup_path'"
+        echo "      For symbolic links, the backup will be skipped."
+        echo ""
+        echo "          USAGE: [ ./$name --backup-path '~/.my-backup' ]"
+        echo ""
+        echo "  --list-exclude"
+        echo "      Prints a list with the names of all files that can be excluded."
+        echo ""
+        echo "  --remove-all, --rm-all"
+        echo "      Remove all symbolic links and hard-copied dotfiles. This option"
+        echo "      can be used along with '--exclude' to provide a list of"
+        echo "      files that will be excluded from the deletion process."
+        echo "      A backup will be made if the target files are not symbolic links."
+        echo ""
+        echo "          USAGE: [ ./$name --rm-all-dotfiles ] or [ ./$name --rm-all-dotfiles --exclude 'zsh, kitty' ]"
+        echo ""
+        echo "  -rm, --remove"
+        echo "      Remove specific symbolic links and hard-copied dotfiles."
+        echo "      A backup will be made if the target file is not a symbolic link."
+        echo ""
+        echo "          USAGE: [ ./$name --rm-dotfiles "zsh, kitty" ]"
+        echo ""
+        echo "  -e or --exclude"
+        echo "      Exclude specific files from installation."
+        echo "      You could use '--list-exclude' to show a list of excludable files."
+        echo ""
+        echo "          USAGE: [ ./$name --exclude 'zsh kitty ...' ] or [ ./$name --exclude 'zsh, kitty, ...' ]"
+        echo ""
+        echo "  -h or --help"
+        echo "      Display this help message."
+        echo ""
+        echo ""
+        echo " EXAMPLES"
+        echo ""
+        echo "  1. Using copy instead of symbolic links (without backup)"
+        echo "      ./$name --force-copy --skip-backup"
+        echo ""
+        echo "  2. Using copy with a custom backup path"
+        echo "      ./$name --force-copy --backup-path '~/my-backup'"
+        echo ""
+        echo "  3. Recreating symbolic links excluding specific files"
+        echo "      ./$name --exclude 'zsh, tmux' --recreate-symlinks"
+        echo ""
 }
 
-for arg in "$@"; do
-        case $arg in
-                "--help" | "-h")
-                        usage
-                        exit 0
-                ;;
-                "--skip-backup")
-                        backup=0
-                ;;
-                "--rm-symlinks")
-                        rm_symlinks=1
-                ;;
-                "--force-copy")
-                        use_copy=1
-                ;;
-                *)
-                        echo "Unknown argument: $arg"
+while [[ "$#" -gt 0 ]]; do
+        name=$(basename "$0")
+
+        case $1 in
+        "")
+                # skip
+        ;;
+        "--help" | "-h")
+                usage
+                exit 0
+        ;;
+        "--skip-backup")
+                backup=0
+        ;;
+        "--remove" | "-rm")
+                if [ -z "$2" ] || [ "${2#--}" != "$2" ]; then
+                        echo "./$name: Expected [ $1 'zsh ...' ] but instead got [ $1 $2 ]"
                         exit 1
-                ;;
+                fi
+
+                files_to_rm=$(echo "$2" | tr ',' ' ')
+                temp_home_files=$(echo "$home_files")
+                temp_config_files=$(echo "$config_files")
+                home_files=""
+                config_files=""
+
+                for name in ${files_to_rm}; do
+                        if echo "$temp_home_files" | grep -qE "(^|\s)$name($|\s)"; then
+                                home_files=$(echo "${home_files} ${name}")
+
+                        elif echo "$temp_config_files" | grep -qE "(^|\s)$name($|\s)"; then
+                                config_files=$(echo "${config_files} ${name}")
+                        fi
+                done
+
+                # Remove extra spaces resulting from removals
+                config_files=$(echo "$config_files" | tr -s ' ')
+                home_files=$(echo "$home_files" | tr -s ' ')
+
+                # Trim leading and trailing spaces
+                home_files=$(echo "$home_files" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+                config_files=$(echo "$config_files" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+
+                should_remove_files=1
+                break # do not parse more options
+        ;;
+        "--remove-all" | "--rm-all")
+                should_remove_files=1
+        ;;
+        "--recreate-symlinks")
+                recreate_symlinks=1
+        ;;
+        "--force-copy")
+                use_copy=1
+        ;;
+        "--list-exclude")
+            excludable_files=$(echo "$home_files $config_files")
+            for file_name in ${excludable_files}; do
+                echo " $file_name"
+            done
+            exit 0
+        ;;
+        "--backup-path")
+                if [ -z "$2" ] || [ "${2#--}" != "$2" ]; then
+                        echo "./$name: Expected [ $1 '~/path-to-backup' ] but instead got [ $1 $2 ]"
+                        exit 1
+                fi
+
+                backup_path="$2"
+                shift
+        ;;
+        "--exclude" | "-e")
+                if [ -z "$2" ] || [ "${2#--}" != "$2" ]; then
+                        echo "./$name: Expected [ $1 'zsh ...' ] but instead got [ $1 $2 ]"
+                        exit 1
+                fi
+
+                files_to_rm=$(echo "$2" | tr ',' ' ')
+                for name in ${files_to_rm}; do
+                        home_files=$(echo "$home_files" | sed "s/\b$name\b//g")
+                        config_files=$(echo "$config_files" | sed "s/\b$name\b//g")
+                done
+
+                # Remove extra spaces resulting from removals
+                config_files=$(echo "$config_files" | tr -s ' ')
+                home_files=$(echo "$home_files" | tr -s ' ')
+
+                # Trim leading and trailing spaces
+                home_files=$(echo "$home_files" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+                config_files=$(echo "$config_files" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+
+                shift
+        ;;
+        *)
+                echo "Unknown argument: $1"
+                exit 1
+        ;;
         esac
+        shift
 done
 
 deletetor() {
@@ -87,16 +238,33 @@ makebackup() {
         if [ -L "$file_path" ]; then
                 return
         elif [ -d "$file_path" ]; then
-                mkdir -p "$backup_path"
+                mkdir -p "$backup_file"
 
-                cp -r "$file_path" "$backup_path"
-                echo "[BACKUP] DIR $file_path IN $backup_path"
+                cp -r "$file_path" "$backup_file"
+                echo "[BACKUP] DIR $file_path IN $backup_file"
         elif [ -f "$file_path" ]; then
-                mkdir -p "$backup_path"
+                mkdir -p "$backup_file"
 
-                cp "$file_path" "$backup_path"
-                echo "[BACKUP] FILE $file_path IN $backup_path"
+                cp "$file_path" "$backup_file"
+                echo "[BACKUP] FILE $file_path IN $backup_file"
         fi
+}
+
+removator() {
+        target_path="${1}"
+        source_path=""
+        file_path=""
+
+        for file_name in ${2}; do
+                file_path=$(echo "${target_path:?}/$file_name" | tr -s '/')
+                source_path=$(find_dotfile "${file_name}")
+
+                if [ "$backup" -eq 1 ]; then
+                        makebackup "${file_path}"
+                fi
+
+                deletetor "${file_path}"
+        done
 }
 
 copynator() {
@@ -132,7 +300,7 @@ syminator() {
         for file_name in ${2}; do
                 file_path=$(echo "${target_path:?}/$file_name" | tr -s '/')
 
-                if [ -L "${file_path}" ] && [ "$rm_symlinks" -eq 0 ]; then
+                if [ -L "${file_path}" ] && [ "$recreate_symlinks" -eq 0 ]; then
                         echo "[SYMLINK] TO ${file_path} ALREADY EXISTS"
                 else
                         if [ "$backup" -eq 1 ]; then
@@ -147,13 +315,19 @@ syminator() {
         done
 }
 
+if [ "$should_remove_files" -eq 1 ]; then
+        removator "$HOME/.config" "$config_files"
+        removator "$HOME" "$home_files"
+        exit 0
+fi
+
 # Check if 'ln' command exists
 if command -v ln > /dev/null 2>&1 && [ "$use_copy" -eq 0 ]; then
         echo "[CREATING SYMBOLIC LINKS]........................."
-        syminator "$HOME/.config" "$config_dirs"
+        syminator "$HOME/.config" "$config_files"
         syminator "$HOME" "$home_files"
 else
         echo "[COPYING DOTFILES]................................"
-        copynator "$HOME/.config" "$config_dirs"
+        copynator "$HOME/.config" "$config_files"
         copynator "$HOME" "$home_files"
 fi
