@@ -103,7 +103,7 @@ usage() {
         echo ""
 }
 
-while [[ "$#" -gt 0 ]]; do
+while [ "$#" -gt 0 ]; do
         name=$(basename "$0")
 
         case $1 in
