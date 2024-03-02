@@ -25,13 +25,12 @@ To save all your GNOME settings, you can do
 dconf dump / > gnome_settings.ini
 ```
 
-To load them back:
+To load them back
 ```
 dconf load / < gnome_settings.ini
 ```
 
-If you only want to save your keybindings, you will need to provide the path to \
-the keybindings, which are usually stored under `/org/gnome/desktop/wm/keybindings`.
+If you only want to save your keybindings, you will need to provide the path to the keybindings
 ```
 dconf dump /org/gnome/desktop/wm/keybindings > gnome_keybindings
 ```
