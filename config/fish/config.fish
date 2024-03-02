@@ -1,5 +1,5 @@
 if true
-    fish_add_path -g "$HOME/bin"
+    fish_add_path -g "$HOME/bin" "$HOME/.bin"
 end
 
 if true
