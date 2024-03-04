@@ -10,7 +10,7 @@ possibility. (_AI Generated_)
 </br>
 </br>
 
-## Unholy Navigation
+## Navigation
 
 - [Tips](#tips)
 - [My Keymaps](#my-keymaps)
@@ -24,7 +24,7 @@ possibility. (_AI Generated_)
 
 ## Tips
 
-- Run `:read !<command> <args>` will insert the output of a shell command into vim [_example_](#example-read-command)
+- Run `:read !<command> <args>` will insert the output of a shell command into vim [_Example_](#read-command)
 - Run `:lua require("utils").toggle_tranparency()` to toggle theme transparency
 - Run `:TSInstall <language_to_install>` to install syntax highlighting and other features for the specific language
 - Run `:Telescope keymaps` to list set keymaps
@@ -126,7 +126,7 @@ return M.check()
 
 </br>
 
-**Read Command**
+### Read Command
 ```
 /*******************************************************************
  * text generating running `:read !figlet -f small Vim is awesome` *
