@@ -14,7 +14,6 @@ These are my `.Files`. Feel free to take whatever you want.
 - [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
 - [SE-EDU](https://se-education.org/learningresources/contents/dotfiles/Dotfiles.html)
 - [Shell Check](https://www.shellcheck.net/)
-- [Fish Cheat Sheet](https://devhints.io/fish-shell)
 
 </br>
 </br>
@@ -25,10 +24,14 @@ To save all your GNOME settings, you can do
 dconf dump / > gnome_settings.ini
 ```
 
+</br>
+
 To load them back
 ```
 dconf load / < gnome_settings.ini
 ```
+
+</br>
 
 If you only want to save your keybindings, you will need to provide the path to the keybindings
 ```
@@ -48,22 +51,27 @@ Before proceeding with the installation, please be aware of the following consid
     - The `install.sh` script will create a backup of the existing files under the .dotfiles/backup directory.
     - This backup ensures that you have a copy of the original files before they are overwritten.
 
+</br>
+
 2. File Overwriting:
     - During the installation process, the script will overwrite the files specified by the script.
     - It is important to note that the existing versions of these files will be replaced.
+
+</br>
 
 3. Shell Compatibility:
     - The `install.sh` script should work in most shells. However, there might be compatibility issues with some shells.
     - If any problems are encountered during the installation process, it is recommended to use `bash` to execute the script.
 
-Keeping these points in mind, you can proceed with the installation.
-
 </br>
+
+**Keeping these points in mind, you can proceed with the installation:**
 
 First clone the repository
 ```
 git clone https://github.com/mr-ema/dotfiles ~/.dotfiles
 ```
+
 Then run
 ```
 cd ~/.dotfiles && ./install.sh
@@ -81,8 +89,7 @@ you can use the `--help` option which will display useful information and all av
 
 </br>
 
-> __Note__\
-> \
+> [!NOTE]
 > By default, the files will be created in the `$HOME` directory and `$HOME/.config`
 > You can modify these paths by replacing them with the desired locations.
 
@@ -94,7 +101,6 @@ to `~/.config` and `~/` directories linking the configuration files that are ins
 
 </br>
 
-> __Note__\
-> \
+> [!NOTE]
 > By default the script will not attempt to replace already existing symbolic links.
 > You can change that by passing `--recreate-symlinks` flag.

@@ -1,26 +1,46 @@
-# Zsh custom configuration
+# Zsh Dark Sorcery
+Unveil the arcane powers of Zsh dark sorcery setup. Delve into
+the abyss of command-line mastery as we harness the shadows to customize
+and enhance your terminal experience. Enter the realm of Zsh Dark Sorcery
+and awaken the magic within your shell. (_AI Generated_)
 
 </br>
 
 ## Navigation
+
 - [Getting Started](#getting-started)
 - [Aliases](#aliases)
 - [Functions](#functions)
 - [Useful Links](#useful-links)
 
 </br>
+</br>
 
 ## Useful Links
+
 - [Shell Scripting _Tutorial_](https://www.tutorialspoint.com/unix/shell_scripting.htm)
 - [Classic Shell Scripting _Book_](https://www.amazon.com/Classic-Shell-Scripting-Arnold-Robbins/dp/0596005954)
+- [Zsh Cheatsheet](https://devhints.io/zsh)
 
 </br>
 </br>
 
 ## Getting Started
-**An important thing to remember in case that you not using the `.dotfile` installer is that you need to create a `.zshenv` file in `$HOME` with the code below. To get this configuration to work**
+
+1. One important thing to remember, if you're not using the
+`.dotfile` installer, is that you will need to create a `.zshenv` file in
+`$HOME` with the code below in order to get this configuration to work.
+
+2. After completing the previus step, you are ready to edit the `.zshrc`. In
+case you haven't installed Nim and cargo, remove them from the
+`CUSTOM_PATH` variable. Additionally, if you don't want to install oh-my-zsh, you
+should remove it from the script.
+
+</br>
 
 ```zsh
+# ~/.zshenv
+
 typeset -U PATH path
 
 # source $HOME/.config/.zshrc
@@ -39,8 +59,9 @@ export LESSHISTFILE=-
 
 </br>
 
-**After complete the previus step you are ready to edit the `.zshrc`. In case that you don't have installed nim and cargo remove them from `CUSTOM_PATH` variable. Also if you dont want to install oh-my-zsh you need to remove it from the script.**
 ```zsh
+# ~/.config/.zshrc
+
 ###--------- PATH --------###
 CUSTOM_PATH=$HOME/.cargo/bin:$HOME/.nimble/bin          # custom $PATH. if not needed remove it from here and the line below
 export PATH=$HOME/bin:/usr/local/bin:$CUSTOM_PATH:$PATH # if you come from bash you might have to change your $PATH
@@ -79,28 +100,46 @@ fi
 ```
 
 </br>
+</br>
 
 ## Aliases
-**An alias in Bash (and most shells) is a way to run a long command using a short one.** If you repeat a command often in the terminal, an alias can save you a lot of typing. [_More_](https://phoenixnap.com/kb/linux-alias-command)
+
+**An alias in Bash (and most shells) is a way to run a
+long command using a short one.** If you repeat a command
+often in the terminal, an alias can save you a lot of
+typing. [_More_](https://phoenixnap.com/kb/linux-alias-command)
+
+</br>
 
 An example is when you want to conenct to a specific bluetooth device via terminal you have to type:
 ```
 bluetoothctl connect 30:53:C1:33:99:7B
 ``` 
+
+</br>
+
 Let's create an alias for the previus command. to create an alias use the following syntax (note that there is not space beetween `=`)
 ```
 alias [name]='[command]'
 ```
+
+</br>
+
 If we Followed the syntax correctly. The previus command would look something like this:
 ```
 alias headset="bluetoothctl connect 30:53:C1:33:99:7B"
 ```
+
+</br>
+
 Now after save the alias in the `aliases` file and restart the terminal we can type
 `headset` and it will run `bluetoothctl connect 30:53:C1:33:99:7B`.
 
 </br>
+</br>
 
 ## Functions
+
 Shell functions are a way to group commands for later execution using a single name for the group. They are executed just like a "regular" command. When the name of a shell function is used as a simple command name, the list of commands associated with that function name is executed. Shell functions are executed in the current shell context; no new process is created to interpret them. [_More_](https://www.gnu.org/software/bash/manual/html_node/Shell-Functions.html)
 
 

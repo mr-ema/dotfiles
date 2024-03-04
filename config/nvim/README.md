@@ -1,20 +1,30 @@
-# NeoVim Setup
-Here I have my all my `Neovim` configuration. Feel free to explore and copy whatever you like.
+# NeoVim Black Magic
+Dive into the world of NeoVim Black Magic, where coding transcends
+the ordinary. With lightning-fast editing commands and seamless code
+navigation, this setup promises unparalleled efficiency. Customize your
+environment with powerful plugins and arcane configurations. Unleash the
+potential of your coding prowess in this realm of digital sorcery. Welcome
+to the future of coding, where every keystroke carries the weight of
+possibility. (_AI Generated_)
 
 </br>
+</br>
 
-## Navigation
+## Unholy Navigation
+
 - [Tips](#tips)
 - [My Keymaps](#my-keymaps)
 - [Useful Links](#useful-links)
-- [Intalled Plugins](#installed-plugins)
+- [Installed Plugins](#installed-plugins)
 - [Utils](#utils)
+- [Examples](#examples)
 
+</br>
 </br>
 
 ## Tips
-- Run `:read !<command> <args>` will insert the output of a shell command into vim [_example_](#example-read-command)
 
+- Run `:read !<command> <args>` will insert the output of a shell command into vim [_example_](#example-read-command)
 - Run `:lua require("utils").toggle_tranparency()` to toggle theme transparency
 - Run `:TSInstall <language_to_install>` to install syntax highlighting and other features for the specific language
 - Run `:Telescope keymaps` to list set keymaps
@@ -24,15 +34,17 @@ Here I have my all my `Neovim` configuration. Feel free to explore and copy what
 - You can change the name and behaviour of `.viminfo` in `lua/kraken/set.lua => vim.opt.shada`
 
 </br>
+</br>
 
 ## My Keymaps
+
 |       Action          |       Shortcut        |
 | --------------------- | --------------------- |
 | Toggle Transparency   | `<leader>tt`          |
 | Toggle Harpoon        | `<leader>h`           |
 | Add File To Harpoon   | `<leader>a`           |
 | Toggle UndoTree       | `<leader>u`           |
-| Open Telescope        |`<leader>ff`           |
+| Open Telescope        | `<leader>ff`          |
 | Update Telescope Path | `<leader>cd`          |
 | Home Tab              | `th`                  |
 | Prev Tab              | `tj`                  |
@@ -41,7 +53,8 @@ Here I have my all my `Neovim` configuration. Feel free to explore and copy what
 
 </br>
 
-## Useful links
+## Useful Links
+
 - [LSP Keybindings](https://github.com/VonHeikemen/lsp-zero.nvim#keybindings)
 - [Vim Cheat Sheet](https://vim.rtorr.com/)
 - [Vim Events Useful For lazy.nvim](https://tech.saigonist.com/b/code/list-all-vim-script-events.html)
@@ -51,8 +64,10 @@ Here I have my all my `Neovim` configuration. Feel free to explore and copy what
 - [LSP Preferences](https://github.com/VonHeikemen/lsp-zero.nvim#choose-your-features)
 
 </br>
+</br>
 
 ## Installed Plugins
+
 - [Tokyonight](https://github.com/folke/tokyonight.nvim)
 - [Lualine](https://github.com/nvim-lualine/lualine.nvim)
 - [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
@@ -66,10 +81,13 @@ Here I have my all my `Neovim` configuration. Feel free to explore and copy what
 - [Refactoring](https://github.com/ThePrimeagen/refactoring.nvim#refactoringnvim)
 
 </br>
+</br>
 
 ## Utils
-#### Autoinstall packer (_deleted from tree since I migrate to [_lazy.nvim_](https://github.com/folke/lazy.nvim)_)
 
+</br>
+
+**Autoinstall packer (_deleted from tree since I migrate to [_lazy.nvim_](https://github.com/folke/lazy.nvim)_)**
 ```lua
 local M = {}
 
@@ -102,9 +120,13 @@ return M.check()
 ```
 
 </br>
+</br>
 
 ## Examples
-#### Example Read Command
+
+</br>
+
+**Read Command**
 ```
 /*******************************************************************
  * text generating running `:read !figlet -f small Vim is awesome` *

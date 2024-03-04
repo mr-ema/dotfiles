@@ -1,5 +1,7 @@
 # Config
-Here I have all my configurations files like editor preferences, shell custom aliases and scripts and other nice stuff. **Feel free to explore and copy whatever you like.**
+Here I've all my configuration files. Like editor preferences, shell
+custom aliases, scripts and other nice stuff. **Feel free to explore
+and copy whatever you like.**
 
 </br>
 
@@ -15,7 +17,7 @@ Here I have all my configurations files like editor preferences, shell custom al
 
 ## Fish
 **Fish is a Unix shell with a focus on interactivity and usability**. Fish is designed to give the user features by default, rather than by configuration. Fish is considered an exotic shell since it does not adhere to POSIX shell standards, at the discretion of the maintainers. [_Wikipedia_](https://en.wikipedia.org/wiki/Fish_(Unix_shell))
-- [Official Website](https://fishshell.com/)
+- [Official Website](https://fishshell.com/#readme)
 - [My Fish Setup](./fish)
 
 ## Kitty
@@ -48,4 +50,4 @@ Here I have all my configurations files like editor preferences, shell custom al
 **Tmux is a terminal multiplexer.** It lets you switch easily between several programs in one terminal, detach them (they keep running in the background) and reattach them to a different terminal. [_Tmux_](https://github.com/tmux/tmux/wiki)
 
 - [How To Install](https://github.com/tmux/tmux/wiki/Installing)
-- [My Tmux Setup](./tmux)
+- [My Tmux Setup](./tmux#readme)

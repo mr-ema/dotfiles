@@ -1,4 +1,10 @@
-# Kitty setup
+# Magic Kitty
+Welcome to the enchanting world of Magic Kitty, where your coding
+journey takes on a delightful feline flair. With purrfectly tailored
+configurations and whisker-quick shortcuts, this setup promises to make
+your coding experience as delightful as cuddling with a kitten. Embrace
+the magic of playful plugins and whisker-soft customizations to transform
+your coding environment into a cozy sanctuary. (_AI Generated_)
 
 </br>
 
@@ -16,6 +22,7 @@
 - [Shortcuts](#shortcuts)
 
 </br>
+</br>
 
 ## Tips
 
@@ -23,6 +30,7 @@
 - Compress your `.png` image to gain huge performance
 - You can change the background in `custom.conf`
 
+</br>
 </br>
 
 ## Useful Links
@@ -33,6 +41,7 @@
 - [Kitty Shortcuts](https://sw.kovidgoyal.net/kitty/overview)
 - [Customize Bottom Bar](https://sw.kovidgoyal.net/kitty/conf/#tab-bar)
 
+</br>
 </br>
 
 ## Shortcuts
