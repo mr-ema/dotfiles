@@ -1,8 +1,9 @@
-# Zsh Dark Sorcery
-Unveil the arcane powers of Zsh dark sorcery setup. Delve into
-the abyss of command-line mastery as we harness the shadows to customize
-and enhance your terminal experience. Enter the realm of Zsh Dark Sorcery
-and awaken the magic within your shell. (_AI Generated_)
+# Zsh
+Welcome to my Zsh setup!. Feel free to take whatever you like and customize it to suit your preferences. Happy configuring!
+
+</br>
+
+> **"If you can't do it in the terminal, it's not worth doing."** - _Unknown_
 
 </br>
 

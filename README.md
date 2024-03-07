@@ -3,6 +3,12 @@ These are my `.Files`. Feel free to take whatever you want.
 
 </br>
 
+> **"Dotfiles are the digital equivalent of socks disappearing in the
+> laundry - you know they're somewhere in the system, but finding a matching
+> pair feels like a Herculean task."** - _ChatGPT_
+
+</br>
+
 ## Quick Navigation
 - [Save/Load Gnome Settings](#saveload-gnome-settings)
 - [Install](#resources)
@@ -87,11 +93,8 @@ you can use the `--skip-backup` option. Additionally, you can use the
 links. If you need assistance or want to see all available options,
 you can use the `--help` option which will display useful information and all available options.
 
-</br>
-
-> [!NOTE]
-> By default, the files will be created in the `$HOME` directory and `$HOME/.config`
-> You can modify these paths by replacing them with the desired locations.
+Note that by default, the files will be created in the `$HOME` directory and `$HOME/.config`
+You can modify these paths by replacing them with the desired locations.
 
 </br>
 
@@ -99,8 +102,7 @@ you can use the `--help` option which will display useful information and all av
 The script creates [symbolic links](https://www.futurelearn.com/info/courses/linux-for-bioinformatics/0/steps/201767)
 to `~/.config` and `~/` directories linking the configuration files that are inside of `.dotfiles`
 
-</br>
+Note that by default the script will not attempt to replace already existing symbolic links.
+You can change that by passing `--recreate-symlinks` flag.
 
-> [!NOTE]
-> By default the script will not attempt to replace already existing symbolic links.
-> You can change that by passing `--recreate-symlinks` flag.
+</br>

@@ -1,10 +1,10 @@
-# Magic Kitty
-Welcome to the enchanting world of Magic Kitty, where your coding
-journey takes on a delightful feline flair. With purrfectly tailored
-configurations and whisker-quick shortcuts, this setup promises to make
-your coding experience as delightful as cuddling with a kitten. Embrace
-the magic of playful plugins and whisker-soft customizations to transform
-your coding environment into a cozy sanctuary. (_AI Generated_)
+# Kitty
+Welcome to my Kitty setup!. Feel free to take whatever you like and customize it to suit your preferences. Happy configuring!
+
+</br>
+
+> **"I had been told that the training procedure with cats was
+> difficult. It’s not. Mine had me trained in two days."** – _Bill Dana_
 
 </br>
 

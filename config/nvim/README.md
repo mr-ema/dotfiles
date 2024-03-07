@@ -1,11 +1,9 @@
-# NeoVim Black Magic
-Dive into the world of NeoVim Black Magic, where coding transcends
-the ordinary. With lightning-fast editing commands and seamless code
-navigation, this setup promises unparalleled efficiency. Customize your
-environment with powerful plugins and arcane configurations. Unleash the
-potential of your coding prowess in this realm of digital sorcery. Welcome
-to the future of coding, where every keystroke carries the weight of
-possibility. (_AI Generated_)
+# NeoVim
+Welcome to my Nvim setup!. Feel free to take whatever you like and customize it to suit your preferences. Happy configuring!
+
+</br>
+
+> **"Once you go vim you can never go back. Literally!"** - _Every Vim User_
 
 </br>
 </br>

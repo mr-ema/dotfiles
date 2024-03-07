@@ -1,13 +1,11 @@
-# Tmux Punk
-Step into the rebellious world of Tmux Punk, where your terminal
-sessions break free from the constraints of convention. With gritty
-configurations and raw power at your fingertips, this setup promises to
-revolutionize your workflow. Embrace the chaos with customizable layouts
-and punk-inspired themes, forging your own path through the digital
-wasteland. Join the rebellion against mundane terminal experiences and
-unleash the anarchic potential of Tmux Punk. Welcome to a world where
-every split screen is a battleground, and every command is a declaration
-of independence. (_AI Generated_)
+# Tmux
+Welcome to my Tmux setup!. Feel free to take whatever you like and customize it to suit your preferences. Happy configuring!
+
+</br>
+
+> **"After a year of hearing about tmux, I finally gave in and installed
+> it - now my terminal looks like it's dressed for a high-tech costume
+> party, and I'm just trying to keep up with the cool kids!""** - _Average Tmux User_
 
 </br>
 
