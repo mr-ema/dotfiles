@@ -122,7 +122,7 @@ while [ "$#" -gt 0 ]; do
         ;;
         "--remove" | "-rm")
                 if [ -z "$2" ] || [ "${2#--}" != "$2" ]; then
-                        echo "./$name: Expected [ $1 'zsh ...' ] but instead got [ $1 $2 ]"
+                        echo "./$name: Expected [ $1 'zsh ...' ] but instead got [ $1 $2 ]" >&2
                         exit 1
                 fi
 
@@ -170,7 +170,7 @@ while [ "$#" -gt 0 ]; do
         ;;
         "--backup-path")
                 if [ -z "$2" ] || [ "${2#--}" != "$2" ]; then
-                        echo "./$name: Expected [ $1 '~/path-to-backup' ] but instead got [ $1 $2 ]"
+                        echo "./$name: Expected [ $1 '~/path-to-backup' ] but instead got [ $1 $2 ]" >&2
                         exit 1
                 fi
 
@@ -179,7 +179,7 @@ while [ "$#" -gt 0 ]; do
         ;;
         "--exclude" | "-e")
                 if [ -z "$2" ] || [ "${2#--}" != "$2" ]; then
-                        echo "./$name: Expected [ $1 'zsh ...' ] but instead got [ $1 $2 ]"
+                        echo "./$name: Expected [ $1 'zsh ...' ] but instead got [ $1 $2 ]" >&2
                         exit 1
                 fi
 
@@ -200,7 +200,7 @@ while [ "$#" -gt 0 ]; do
                 shift
         ;;
         *)
-                echo "Unknown argument: $1"
+                echo "Unknown argument: $1" >&2
                 exit 1
         ;;
         esac
