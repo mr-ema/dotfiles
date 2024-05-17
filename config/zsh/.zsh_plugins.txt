@@ -1,0 +1,5 @@
+# Fish-Like Plugins
+zsh-users/zsh-autosuggestions
+
+# Prompt
+romkatv/powerlevel10k kind:fpath

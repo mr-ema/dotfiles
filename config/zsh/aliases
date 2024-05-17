@@ -8,6 +8,7 @@ alias kittyconfig="cd ~/.config/kitty/ && nvim ."
 # others
 alias vim="nvim"
 alias zshsource="source ~/.config/zsh/.zshrc"
+alias antidotebundle="antidote bundle <~/.config/zsh/.zsh_plugins.txt >~/.config/zsh/.zsh_plugins.zsh"
 
 # connections [bluetooth, wifi]
 alias headset="bluetoothctl connect 30:53:C1:33:99:7B"
