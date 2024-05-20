@@ -8,9 +8,14 @@ source "$ZDOTDIR/.antidote/antidote.zsh"
 export GOPATH="$HOME/.local/go"
 export GEM_PATH="$HOME/.gem"
 export BUN_INSTALL="$HOME/.bun"
+export EDITOR=nvim
 
 # If you come from bash you might have to change your $PATH
 export PATH=$PATH:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$BUN_INSTALL/bin:$GEM_PATH/bin/:$GOPATH/bin
+
+## ------- Bindings ------- ##
+# bindkey -v # vim keybindings
+bindkey "^E" end-of-line
 
 ### ------- Init ------- ###
 antidote load

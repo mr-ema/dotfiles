@@ -13,8 +13,17 @@ alias antidotebundle="antidote bundle <~/.config/zsh/.zsh_plugins.txt >~/.config
 # connections [bluetooth, wifi]
 alias headset="bluetoothctl connect 30:53:C1:33:99:7B"
 
-# code paths
-alias gocode="cd ~/Desktop/code"
+# commands 
+alias la="ls --all"
+alias ll="ls -la"
+alias list='ls --human-readable --size --classify -a'
 
-# other paths
-alias mynotes="cd ~/Documents/notes/"
+alias bc='bc -l'
+alias edit='nvim'
+
+alias rm='rm -I --preserve-root'
+
+# parenting changing perms on / #
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'

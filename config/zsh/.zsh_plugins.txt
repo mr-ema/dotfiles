@@ -1,5 +1,8 @@
 # Fish-Like Plugins
 zsh-users/zsh-autosuggestions
 
+# Vim
+jeffreytse/zsh-vi-mode
+
 # Prompt
 romkatv/powerlevel10k kind:fpath
