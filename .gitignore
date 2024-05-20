@@ -1,2 +1,4 @@
 *.uuid
 backup
+nixos/hardware*
+**/zsh/.zsh_plugins.zsh

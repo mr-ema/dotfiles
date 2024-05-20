@@ -75,7 +75,7 @@ Before proceeding with the installation, please be aware of the following consid
 
 First clone the repository
 ```
-git clone https://github.com/mr-ema/dotfiles ~/.dotfiles
+git clone --recurse-submodules https://github.com/mr-ema/dotfiles ~/.dotfiles
 ```
 
 Then run
