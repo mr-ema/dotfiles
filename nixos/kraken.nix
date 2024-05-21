@@ -37,6 +37,12 @@
       ffmpeg
       zsh
       ripgrep
+      tldr
+      entr
+      du-dust
+      btop
+      bat
+      imagemagick
 
       zip
       unzip
