@@ -4,6 +4,9 @@ source "$ZDOTDIR/aliases"
 source "$ZDOTDIR/functions"/*
 source "$ZDOTDIR/.antidote/antidote.zsh"
 
+# Conditional source
+(( $+commands[fzf] )) && source <(fzf --zsh)
+
 ### ------- EXPORT -------- ### 
 export GOPATH="$HOME/.local/go"
 export GEM_PATH="$HOME/.gem"
