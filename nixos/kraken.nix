@@ -24,16 +24,19 @@
         { };
     in
     with pkgs; [
+      coreutils
       git
       openssh
       glibc
       wget
       xclip
+      bash
+
+      kitty
       figlet
       ffmpeg
       zsh
-      bash
-      kitty
+      ripgrep
 
       zip
       unzip
