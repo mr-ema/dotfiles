@@ -6,6 +6,9 @@ source "$ZDOTDIR/.antidote/antidote.zsh"
 # Conditional source
 (( $+commands[fzf] )) && source <(fzf --zsh)
 
+# If you come from bash you might have to change your $PATH
+export PATH=$PATH:$HOME/.bin:$HOME/bin:/usr/local/bin:$HOME/.local/bin
+
 ### ------- Settings -------- ### 
 HISTFILE="$ZDOTDIR/.zsh_history"
 
