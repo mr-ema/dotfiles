@@ -23,33 +23,26 @@
         })
         { };
     in
-    with pkgs; [
-      coreutils
-      git
-      openssh
-      glibc
-      wget
-      xclip
-      bash
+    with pkgs; builtins.concatLists [
+      # Core
+      [ coreutils openssh glibc xclip wget git ]
+      [ zsh bash ]
 
-      kitty
-      figlet
-      ffmpeg
-      zsh
-      ripgrep
-      tldr
-      entr
-      du-dust
-      btop
-      bat
-      imagemagick
+      # Compression
+      [ zip unzip gnutar ]
 
-      zip
-      unzip
-      gnutar
+      # Text manipulation
+      [ figlet ripgrep jq ]
 
-      (unstable.fzf)
-      (unstable.neovim)
+      # Other
+      [ du-dust btop hyperfine ]
+      [ (unstable.fzf) bat tldr entr ]
+
+      # [Image - Video] Stuff
+      [ ffmpeg imagemagick ]
+
+      # Terminal - Editor
+      [ (unstable.kitty) (unstable.neovim) ]
     ];
 
   # Environment variables
