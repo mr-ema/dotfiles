@@ -14,6 +14,7 @@
           pkgs.pkg-config
           pkgs.ncurses
           pkgs.glibc
+          pkgs.appimage-run
         ];
       profile = "export FHS=1";
       runScript = "zsh";
