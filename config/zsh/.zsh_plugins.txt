@@ -5,4 +5,4 @@ zsh-users/zsh-autosuggestions
 jeffreytse/zsh-vi-mode
 
 # Prompt
-romkatv/powerlevel10k kind:fpath
+# romkatv/powerlevel10k kind:fpath

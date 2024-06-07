@@ -12,6 +12,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages =
@@ -37,6 +41,7 @@
       # Other
       [ du-dust btop hyperfine ]
       [ (unstable.fzf) bat tldr entr ]
+      [ oh-my-posh ]
 
       # [Image - Video] Stuff
       [ ffmpeg imagemagick ]

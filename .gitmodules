@@ -1,3 +1,6 @@
 [submodule "config/zsh/.antidote"]
 	path = config/zsh/.antidote
 	url = https://github.com/mattmc3/antidote.git
+[submodule "oh-my-posh"]
+	path = oh-my-posh
+	url = https://github.com/JanDeDobbeleer/oh-my-posh.git
