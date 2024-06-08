@@ -2,12 +2,10 @@
 alias zshconfig="cd ~/.config/zsh/ && nvim ."
 alias vimconfig="cd ~/.config/nvim/ && nvim ."
 alias tmuxconfig="cd ~/.config/tmux/ && nvim ."
-alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias kittyconfig="cd ~/.config/kitty/ && nvim ."
 
 # others
 alias vim="nvim"
-alias zshsource="source ~/.config/zsh/.zshrc"
 alias antidotebundle="antidote bundle <~/.config/zsh/.zsh_plugins.txt >~/.config/zsh/.zsh_plugins.zsh"
 
 # connections [bluetooth, wifi]
