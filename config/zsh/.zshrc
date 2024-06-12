@@ -22,7 +22,7 @@ preexec() {
 
     # Mejor prevenir que lamentar
     if [[ "$cmd" == "rm -rf *" || "$cmd" == "rm -rf ~" || "$cmd" == "rm -rf /" ]]; then
-        vared -p "Are you 69 porcent sure you want to execute '$cmd'? [y/n] " -c response
+        vared -p "[DANGER] Are you 69 porcent sure you want to execute '$cmd'? [y/n] " -c response
         if [[ "$response" != "y" && "$response" != "yes" ]]; then
                 exec zsh
         fi

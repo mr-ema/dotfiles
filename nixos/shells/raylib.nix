@@ -9,6 +9,7 @@ pkgs.mkShell {
     wayland
     glfw
     libGL
+    emscripten
     xorg.libXrandr
     xorg.libXinerama
     xorg.libXcursor
