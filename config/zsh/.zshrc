@@ -15,7 +15,23 @@ HISTFILE="$ZDOTDIR/.zsh_history"
 ## ------- Bindings ------- ##
 bindkey "^E" end-of-line
 
+## ------- Catch Commands ------- ##
+preexec() {
+    local cmd
+    cmd="$1"
+
+    # Mejor prevenir que lamentar
+    if [[ "$cmd" == "rm -rf *" || "$cmd" == "rm -rf ~" || "$cmd" == "rm -rf /" ]]; then
+        vared -p "Are you 69 porcent sure you want to execute '$cmd'? [y/n] " -c response
+        if [[ "$response" != "y" && "$response" != "yes" ]]; then
+                exec zsh
+        fi
+    fi
+}
+
 ### ------- Init ------- ###
 antidote load
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec preexec
 
 (( $+commands[oh-my-posh] )) && eval "$(oh-my-posh init zsh --config ~/.dotfiles/oh-my-posh/themes/tokyonight_storm.omp.json)"
