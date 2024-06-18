@@ -37,14 +37,15 @@
 
       # Text manipulation
       [ figlet ripgrep jq ]
-
-      # Other
+      
+      # Other Tools
       [ du-dust btop hyperfine ]
-      [ (unstable.fzf) bat tldr entr ]
-      [ oh-my-posh ]
+      [ bat tldr entr ]
+      [ libreoffice ]
+      [ oh-my-posh (unstable.fzf) ]
 
       # [Image - Video] Stuff
-      [ ffmpeg imagemagick ]
+      [ ffmpeg imagemagick flameshot ]
 
       # Terminal - Editor
       [ (unstable.kitty) (unstable.neovim) ]
@@ -63,4 +64,9 @@
     dates = "weekly";
     options = "--delete-older-than +3";
   };
+
+  # Copy the NixOS configuration file and link it from the resulting system
+  # (/run/current-system/configuration.nix). This is useful in case you
+  # accidentally delete configuration.nix.
+  system.copySystemConfiguration = true;
 }
