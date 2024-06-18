@@ -3,6 +3,7 @@ NixOS is a Linux distribution based on Nix a package manager which comes
 in a form of many command line tools. Packages that Nix can build are
 defined with the Nix Expression Language.
 
+</br>
 
 ## Remove Old Generations
 ```
