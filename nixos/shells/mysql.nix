@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> { } }:
 
 # Local mariadb server with nix-shell
-# stole from "https://jeancharles.quillet.org/posts/2022-01-30-Local-mariadb-server-with-nix-shell.html"
+# stoled from: "https://jeancharles.quillet.org/posts/2022-01-30-Local-mariadb-server-with-nix-shell.html"
 
 pkgs.mkShell {
   buildInputs = [ pkgs.mariadb ];
