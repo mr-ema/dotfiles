@@ -3,15 +3,10 @@ These are my `.Files`. Feel free to take whatever you want.
 
 </br>
 
-> **"Dotfiles are the digital equivalent of socks disappearing in the
-> laundry - you know they're somewhere in the system, but finding a matching
-> pair feels like a Herculean task."** - _ChatGPT_
-
-</br>
-
 ## Quick Navigation
 - [Save/Load Gnome Settings](#saveload-gnome-settings)
 - [Install](#resources)
+- [Examples](#examples)
 - [Use Of Install Script](#use-of-install-script)
 
 </br>
@@ -66,8 +61,7 @@ Before proceeding with the installation, please be aware of the following consid
 </br>
 
 3. Shell Compatibility:
-    - The `install.sh` script should work in most shells. However, there might be compatibility issues with some shells.
-    - If any problems are encountered during the installation process, it is recommended to use `bash` to execute the script.
+    - The `install.sh` script is written specifically for Bash. Therefore, it is recommended to use Bash for executing the script.
 
 </br>
 
@@ -81,6 +75,32 @@ git clone --recurse-submodules https://github.com/mr-ema/dotfiles ~/.dotfiles
 Then run
 ```
 cd ~/.dotfiles && ./install.sh
+```
+
+or
+```
+cd ~/.dotfiles && ./install.sh --help
+```
+
+</br>
+</br>
+
+## Examples
+Print a list with the names of all files that can be excluded
+```
+./install.sh --list-exclude
+```
+
+Exclude specific files
+```
+./install.sh --exclude 'bin zsh'
+```
+
+Remove a especific linked file
+```
+./install.sh -rm 'bin'
+
+./install.sh -rm 'pull-apk.sh'
 ```
 
 </br>
