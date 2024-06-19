@@ -79,13 +79,13 @@ usage() {
         echo "      files that will be excluded from the deletion process."
         echo "      A backup will be made if the target files are not symbolic links."
         echo ""
-        echo "          USAGE: [ ./$name --rm-all-dotfiles ] or [ ./$name --rm-all-dotfiles --exclude 'zsh, ...' ]"
+        echo "          USAGE: [ ./$name --rm-all ] or [ ./$name --rm-all-dotfiles --exclude 'zsh, ...' ]"
         echo ""
         echo "  -rm, --remove"
         echo "      Remove specific symbolic links and hard-copied dotfiles."
         echo "      A backup will be made if the target file is not a symbolic link."
         echo ""
-        echo "          USAGE: [ ./$name --rm-dotfiles 'zsh, ...' ]"
+        echo "          USAGE: [ ./$name --rm 'zsh, ...' ]"
         echo ""
         echo "  -e or --exclude"
         echo "      Exclude specific files from installation."
@@ -136,8 +136,10 @@ while [ "$#" -gt 0 ]; do
                 files_to_rm=$(echo "$2" | tr ',' ' ')
                 temp_home_files=$(echo "$home_files")
                 temp_config_files=$(echo "$config_files")
+                temp_binaries=$(echo "$binaries")
                 home_files=""
                 config_files=""
+                binaries=""
 
                 for name in ${files_to_rm}; do
                         if echo "$temp_home_files" | grep -qE "(^|\s)$name($|\s)"; then
@@ -145,16 +147,21 @@ while [ "$#" -gt 0 ]; do
 
                         elif echo "$temp_config_files" | grep -qE "(^|\s)$name($|\s)"; then
                                 config_files=$(echo "${config_files} ${name}")
+
+                        elif echo "$temp_binaries" | grep -qE "(^|\s)$name($|\s)"; then
+                                binaries=$(echo "${binaries} ${name}")
                         fi
                 done
 
                 # Remove extra spaces resulting from removals
                 config_files=$(echo "$config_files" | tr -s ' ')
                 home_files=$(echo "$home_files" | tr -s ' ')
+                binariess=$(echo "$binaries" | tr -s ' ')
 
                 # Trim leading and trailing spaces
                 home_files=$(echo "$home_files" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
                 config_files=$(echo "$config_files" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+                binaries=$(echo "$binaries" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
                 should_remove_files=1
                 break # do not parse more options
@@ -169,7 +176,7 @@ while [ "$#" -gt 0 ]; do
                 use_copy=1
         ;;
         "--list-exclude")
-            excludable_files=$(echo "$home_files $config_files")
+            excludable_files=$(echo "$home_files $config_files $binaries")
             for file_name in ${excludable_files}; do
                 echo " $file_name"
             done
@@ -194,15 +201,18 @@ while [ "$#" -gt 0 ]; do
                 for name in ${files_to_rm}; do
                         home_files=$(echo "$home_files" | sed "s/\b$name\b//g")
                         config_files=$(echo "$config_files" | sed "s/\b$name\b//g")
+                        binaries=$(echo "$binaries" | sed "s/\b$name\b//g")
                 done
 
                 # Remove extra spaces resulting from removals
                 config_files=$(echo "$config_files" | tr -s ' ')
                 home_files=$(echo "$home_files" | tr -s ' ')
+                binaries=$(echo "$binaries" | tr -s ' ')
 
                 # Trim leading and trailing spaces
                 home_files=$(echo "$home_files" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
                 config_files=$(echo "$config_files" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+                binaries=$(echo "$binaries" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
                 shift
         ;;
