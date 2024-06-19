@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # -----------------------------------------------------------------------------
 # Zero-Clause BSD
@@ -15,7 +15,13 @@
 # OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 # -----------------------------------------------------------------------------
 
+if [ -z "$BASH_VERSION" ]; then
+    echo "error: This script must be executed with Bash." >&2
+    exit 1
+fi
+
 dot_dir="$HOME/.dotfiles" # where the dotfiles are
+bin_path="$HOME/.bin" # where dotfiles shell scripts will be link or hard-copied
 
 # arguments flags
 backup=1
@@ -27,8 +33,9 @@ backup_path="$dot_dir/backup"
 backup_file="$backup_path/$(date +%H-%M-%S)"
 
 # names of files to symlink or copy ( the dot is optional if you remove it it will link as 'fonts' )
-home_files=".bin .zshenv .gitconfig .fonts"
+home_files=".zshenv .gitconfig .fonts"
 config_files="zsh fish nvim kitty tmux"
+binaries="$(ls $dot_dir/bin)"
 
 usage() {
         name=$(basename "$0")
@@ -228,7 +235,7 @@ deletetor() {
 
 find_dotfile() {
         file_name="$1"
-        file_name=$(echo "$file_name" | tr -d '.')
+        file_name="${file_name#.}"
 
         path=$(find "${dot_dir}" -name "${file_name}" -o -name ".${file_name}" | head -n 1)
 
@@ -321,6 +328,8 @@ syminator() {
 if [ "$should_remove_files" -eq 1 ]; then
         removator "$HOME/.config" "$config_files"
         removator "$HOME" "$home_files"
+        removator "${bin_path}" "${binaries}"
+
         exit 0
 fi
 
@@ -329,6 +338,10 @@ if command -v ln > /dev/null 2>&1 && [ "$use_copy" -eq 0 ]; then
         echo "[CREATING SYMBOLIC LINKS]........................."
         syminator "$HOME/.config" "$config_files"
         syminator "$HOME" "$home_files"
+
+        for binary in "${binaries}"; do
+                syminator "${bin_path}" "${binary}"
+        done
 else
         echo "[COPYING DOTFILES]................................"
         copynator "$HOME/.config" "$config_files"
