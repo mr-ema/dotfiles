@@ -17,8 +17,11 @@ let
   ];
 in
 pkgs.mkShell {
-  nativeBuildInputs = with pkgs; [ musl pkg-config rustup cmake emscripten clang glfw ];
-  buildInputs = with pkgs; [ (map (lib: lib.dev) devDeps) ];
+  nativeBuildInputs = with pkgs; [ pkg-config rustup cmake clang ];
+  buildInputs = with pkgs; builtins.concatLists [
+    [ (map (lib: lib.dev) devDeps) ]
+    [ glfw emscripten ]
+  ];
 
   shellHook = ''
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver/lib64
