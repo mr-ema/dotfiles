@@ -16,15 +16,27 @@ let
     ])
   ];
 in
-pkgs.mkShell {
-  nativeBuildInputs = with pkgs; [ pkg-config rustup cmake clang ];
-  buildInputs = with pkgs; builtins.concatLists [
-    [ (map (lib: lib.dev) devDeps) ]
-    [ glfw emscripten ]
-  ];
+# Default Shell
+pkgs.mkShell
+  {
+    nativeBuildInputs = with pkgs; [ pkg-config rustup cmake clang ];
+    buildInputs = with pkgs; [ (map (lib: lib.dev) devDeps) glfw ];
 
-  shellHook = ''
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver/lib64
-    export CPATH=$(echo ${pkgs.lib.concatStringsSep ":" (map (dep: "${dep.dev}/include") devDeps)})
-  '';
+    shellHook = ''
+      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver/lib64
+      export CPATH=$(echo ${pkgs.lib.concatStringsSep ":" (map (dep: "${dep.dev}/include") devDeps)})
+    '';
+  }
+  # Other Shells (ex: nix-shell -A emscripten)
+  // {
+  emscripten = pkgs.mkShell {
+    nativeBuildInputs = with pkgs; [ pkg-config rustup cmake clang ];
+    buildInputs = with pkgs; (map (lib: lib.dev) devDeps) ++ [ glfw emscripten pkgsi686Linux.glibc ];
+
+    shellHook = ''
+      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver/lib64
+      export CPATH=$(echo ${pkgs.lib.concatStringsSep ":" (map (dep: "${dep.dev}/include") devDeps)})
+      export CPATH=$CPATH:${pkgs.pkgsi686Linux.glibc}/include:${pkgs.emscripten}/share/emscripten/cache/sysroot/include
+    '';
+  };
 }
