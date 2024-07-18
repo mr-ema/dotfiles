@@ -7,6 +7,7 @@
     [
       # Modules 
       ./modules/fhs-env.nix
+      ./modules/game-juice.nix
     ];
 
   # Allow unfree packages
