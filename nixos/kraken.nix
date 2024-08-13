@@ -33,6 +33,9 @@
       [ coreutils openssh glibc xclip wget git ]
       [ zsh bash ]
 
+      # Version Control
+      [ verco ]
+
       # Compression
       [ zip unzip gnutar ]
 
