@@ -16,6 +16,7 @@
       [
         # Core
         [ coreutils openssh glibc xclip wget git curl ]
+        [ findutils streamlink ]
         [ zsh bash ]
 
         # Version Control
@@ -41,6 +42,11 @@
 
   # Backup etc files instead of failing to activate generation if a file already exists in /etc
   environment.etcBackupExtension = ".bak";
+  user.shell = "${pkgs.zsh}/bin/zsh"; # default shell
+  terminal.font = "${pkgs.fira-code-nerdfont}/share/fonts/truetype/NerdFonts/FiraCodeNerdFontMono-Regular.ttf";
+
+  # Text to show on every new shell created by Nix-on-Droid.
+  environment.motd = null;
 
   # Add termux-am package
   android-integration.am.enable = true;
