@@ -7,7 +7,6 @@
     [
       # Modules 
       ./modules/fhs-env.nix
-      ./modules/game-juice.nix
     ];
 
   # Allow unfree packages
@@ -30,7 +29,7 @@
     in
     with pkgs; builtins.concatLists [
       # Core
-      [ coreutils openssh glibc xclip wget git ]
+      [ coreutils openssh glibc xclip wget git curl ]
       [ zsh bash ]
 
       # Version Control
@@ -41,12 +40,12 @@
 
       # Text manipulation
       [ figlet ripgrep jq ]
-      
+
       # Other Tools
       [ du-dust btop hyperfine ]
       [ bat tldr entr ]
       [ libreoffice ]
-      [ oh-my-posh (unstable.fzf) ]
+      [ (unstable.oh-my-posh) (unstable.fzf) ]
 
       # [Image - Video] Stuff
       [ ffmpeg imagemagick flameshot ]
