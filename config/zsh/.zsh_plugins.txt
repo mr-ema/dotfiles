@@ -6,3 +6,6 @@ jeffreytse/zsh-vi-mode
 
 # Prompt
 # romkatv/powerlevel10k kind:fpath
+
+# Nix
+chisui/zsh-nix-shell
