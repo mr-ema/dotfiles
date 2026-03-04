@@ -7,6 +7,7 @@
     [
       # Modules 
       ./modules/fhs-env.nix
+      ./modules/hyprland.nix
     ];
 
   # Allow unfree packages
@@ -45,7 +46,7 @@
       [ figlet ripgrep jq ]
 
       # Other Tools
-      [ du-dust btop hyperfine ]
+      [ dust btop hyperfine ]
       [ bat tldr entr ]
       [ libreoffice ]
       [ (unstable.oh-my-posh) (unstable.fzf) ]
@@ -63,6 +64,9 @@
   # Shell stuff
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
+
+  # Nix store optimization
+  nix.settings.auto-optimise-store = true;
 
   # Garbage collect old builds
   nix.gc = {
