@@ -10,6 +10,9 @@
     };
   };
 
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+
   # Enable Hyprland
   programs.hyprland = {
     enable = true;
@@ -24,6 +27,8 @@
 
   security.rtkit.enable = true;
 
+  networking.networkmanager.enable = true;
+
   environment.systemPackages = with pkgs; [
     kitty               # terminal
     waybar              # top bar
@@ -31,5 +36,6 @@
     dunst               # notifications
     hyprpaper           # wallpaper
     networkmanager      # network manager
+    pavucontrol         # sound manager
   ];
 }
