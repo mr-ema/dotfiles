@@ -1,0 +1,155 @@
+/* ===== COLORS ===== */
+
+@define-color bg        #101010;
+@define-color fg        #1e1e2e;
+
+@define-color blue      #8caaee;
+@define-color white     #eeeeee;
+@define-color cyan      #99d1db;
+@define-color green     #a6d189;
+@define-color yellow    #e5c890;
+@define-color red       #e78284;
+@define-color pink      #ea999c;
+@define-color purple    #ca9ee6;
+@define-color docker    #85c1dc;
+@define-color gray      #737994;
+@define-color fog       #b0b4bc;
+@define-color hover     #1e1e1e;
+
+
+/* ===== GLOBAL ===== */
+
+* {
+  font-family: "JetbrainsMono Nerd Font", monospace;
+  font-size: 11px;
+  font-weight: 600;
+
+  min-height: 0;
+  min-width: 0;
+
+  border-radius: 6px;
+}
+
+#waybar {
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  background-color: @bg;
+}
+
+#waybar.empty #window {
+  background-color: transparent;
+}
+
+button {
+  background: transparent;
+}
+
+
+/* ===== WORKSPACES ===== */
+
+#workspaces {
+  background: @fg;
+}
+
+#workspaces button {
+  color: #babbf1;
+  padding: 0.3rem 0.6rem;
+  margin: 0.4rem 0.25rem;
+}
+
+#workspaces button.active {
+  color: @cyan;
+}
+
+#workspaces button:hover {
+  background: @hover;
+  border: 0px solid transparent;
+}
+
+
+/* ===== GENERIC MODULE STYLE ===== */
+
+#custom-music, #tray, #backlight, #clock, #battery, #pulseaudio,
+#network, #cpu, #memory, #custom-lock, #custom-power, #custom-weather,
+#custom-uptime, #temperature, #idle_inhibitor, #custom-docker {
+  background-color: @fg;
+
+  padding: 0.3rem 0.6rem;
+  margin: 0.4rem 0.25rem;
+}
+
+/* ===== MODULE COLORS ===== */
+
+#clock,
+#custom-weather {
+  color: @blue;
+}
+
+#battery,
+#battery.charging {
+  color: @green;
+}
+
+#battery.warning:not(.charging) {
+  color: @red;
+}
+
+#backlight, #cutom-sep {
+  color: @yellow;
+}
+
+#pulseaudio {
+  color: @pink;
+  border-radius: 0.45em 0 0 0.45em;
+}
+
+#custom-music {
+  color: @purple;
+}
+
+#custom-lock {
+  color: #babbf1;
+}
+
+#custom-power {
+  color: @red;
+  border-radius: 0.45em 0 0 0.45em;
+}
+
+#custom-docker {
+  color: @docker;
+}
+
+
+/* ===== SPECIAL STATES ===== */
+
+#custom-docker.docker-none {
+  color: @gray;
+}
+
+#custom-docker.docker-error {
+  color: @red;
+}
+
+
+/* ===== WEATHER STATES ===== */
+
+#custom-weather.clear   { color: @yellow; }
+#custom-weather.cloud   { color: @cyan; }
+#custom-weather.rain    { color: @blue; }
+#custom-weather.snow    { color: @white; }
+#custom-weather.thunder { color: @purple; }
+#custom-weather.fog     { color: @fog; }
+#custom-weather.error   { color: @red; }
+
+
+/* ===== SHAPE TWEAKS ===== */
+
+#backlight,
+#battery {
+  border-radius: 0;
+}
+
+tooltip {
+  background-color: @bg;
+}
