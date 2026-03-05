@@ -34,7 +34,7 @@ backup_file="$backup_path/$(date +%H-%M-%S)"
 
 # names of files to symlink or copy ( the dot is optional if you remove it it will link as 'fonts' )
 home_files=".zshenv .gitconfig .fonts"
-config_files="zsh fish nvim kitty tmux"
+config_files="zsh fish nvim kitty tmux hypr waybar"
 binaries="$(ls $dot_dir/bin)"
 
 usage() {
