@@ -49,15 +49,18 @@ button {
 
 #workspaces {
   background: @fg;
+  margin-right: 1em;
 }
 
 #workspaces button {
   color: #babbf1;
-  padding: 0.3rem 0.6rem;
-  margin: 0.4rem 0.25rem;
+  padding: 0.3rem 0.8rem;
+  margin: 0.45rem 0.25rem;
+  opacity: 0.6;
 }
 
 #workspaces button.active {
+  opacity: 1; 
   color: @cyan;
 }
 
@@ -74,8 +77,8 @@ button {
 #custom-uptime, #temperature, #idle_inhibitor, #custom-docker {
   background-color: @fg;
 
-  padding: 0.3rem 0.6rem;
-  margin: 0.4rem 0.25rem;
+  padding: 0.3rem 0.8rem;
+  margin: 0.45rem 0.25rem;
 }
 
 /* ===== MODULE COLORS ===== */
