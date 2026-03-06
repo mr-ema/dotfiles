@@ -2,16 +2,21 @@
 
 {
   # Enable X11 (required even for Wayland sessions)
-  services.xserver = {
+  services.xserver.enable = true;
+
+  # Display manager
+  services.displayManager.gdm = {
     enable = true;
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
+    wayland = true;
   };
 
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
+  };
 
   # Enable Hyprland
   programs.hyprland = {
@@ -25,7 +30,12 @@
     alsa.enable = true;
   };
 
-  security.rtkit.enable = true;
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+  };
+
+  services.dbus.enable = true;
 
   networking.networkmanager.enable = true;
 
@@ -35,7 +45,9 @@
     wofi                # app launcher
     dunst               # notifications
     hyprpaper           # wallpaper
-    networkmanager      # network manager
     pavucontrol         # sound manager
+    nautilus            # file manager
+    gvfs                # file manager lib
+    polkit_gnome        # authentication agent
   ];
 }
