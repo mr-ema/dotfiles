@@ -1,17 +1,20 @@
 return {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     build = ":TSUpdate",
 
     config = function()
-        require("nvim-treesitter.configs").setup {
-            ensure_installed = { }, -- Leave empty to avoid error in first install
+        require("nvim-treesitter").install({
+            ensure_installed = {}, 
             sync_install = false,
-            auto_install = false, -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+            auto_install = false, 
+        })
 
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-            },
-        }
+        vim.api.nvim_create_autocmd("FileType", {
+            callback = function()
+                local buf = vim.api.nvim_get_current_buf()
+                pcall(vim.treesitter.start, buf)
+            end,
+        })
     end
 }
