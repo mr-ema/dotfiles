@@ -37,7 +37,7 @@
       [ zsh bash ]
 
       # Version Control
-      [ verco ]
+      [ git ]
 
       # Compression
       [ zip unzip gnutar ]

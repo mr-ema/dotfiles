@@ -4,11 +4,9 @@
   # Enable X11 (required even for Wayland sessions)
   services.xserver.enable = true;
 
-  # Display manager
-  services.displayManager.gdm = {
-    enable = true;
-    wayland = true;
-  };
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = false;
+  services.displayManager.defaultSession = "hyprland";
 
   xdg.portal = {
     enable = true;
