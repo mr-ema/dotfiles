@@ -1,10 +1,8 @@
 return {
-    "VonHeikemen/lsp-zero.nvim",
-    branch = "v2.x",
-    event = { "BufRead", "BufNewFile" },
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-        -- LSP Support
-        "neovim/nvim-lspconfig",
+        -- LSP installer
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
 
@@ -12,53 +10,75 @@ return {
         "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
-        "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-nvim-lua",
+        "saadparwaiz1/cmp_luasnip",
 
         -- Snippets
         "L3MON4D3/LuaSnip",
         "rafamadriz/friendly-snippets",
+
+        -- Diagnostics picker
+        "nvim-telescope/telescope.nvim",
     },
 
     config = function()
-        local lsp = require("lsp-zero")
-        -- use recommended settings 
-        lsp.preset('recommended')
+        require("mason").setup()
+        require("mason-lspconfig").setup({ automatic_enable = true })
 
-        -- when add more, remember have the language installed 
-        -- for example if wants install rust_analizer you must have rust installed.
-        -- lsp.ensure_installed({})
+        local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-        local cmp = require('cmp')
-        local cmp_select = { behavior = cmp.SelectBehavior.Select }
-        local cmp_mappings = lsp.defaults.cmp_mappings({
-            ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-            ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-            ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-            ['<C-Space>'] = cmp.mapping.complete(),
-        })
+        -- LSP keymaps
+        local on_attach = function(_, bufnr)
+            local opts = {
+                buffer = bufnr,
+                remap = false,
+            }
 
-        --- keymaps ---
-        lsp.on_attach(function(client, bufnr)
-            local opts = { buffer = bufnr, remap = false }
+            vim.keymap.set( "n", "<leader>dk", vim.diagnostic.goto_prev, opts)
+            vim.keymap.set( "n", "<leader>dj", vim.diagnostic.goto_next, opts)
+            vim.keymap.set( "n", "<space>dl", "<cmd>Telescope diagnostics<cr>", opts)
+            vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
+        end
 
-            vim.keymap.set('n', '<leader>dk', vim.diagnostic.goto_prev, opts)
-            vim.keymap.set('n', '<leader>dj', vim.diagnostic.goto_next, opts)
-            vim.keymap.set('n', '<space>dl', '<cmd>Telescope diagnostics<cr>', opts) 
-        end )
+        -- Common configuration for all LSP servers
+        vim.lsp.config("*", { capabilities = capabilities, on_attach = on_attach, })
 
-        lsp.set_preferences({
-            configure_diagnostics = false, -- disable to show diagnostic alogside definition
+        -- nvim-cmp
+        local cmp = require("cmp")
+        local cmp_select = { behavior = cmp.SelectBehavior.Select, }
 
-            sign_icons = {
-                error = 'E',
-                warn = 'W',
-                hint = 'H',
-                info = 'I'
+        cmp.setup({
+            mapping = {
+                ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+                ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+                ["<C-y>"] = cmp.mapping.confirm({ select = true, }),
+                ["<C-Space>"] = cmp.mapping.complete(),
+            },
+
+            sources = {
+                { name = "nvim_lsp" },
+                { name = "buffer" },
+                { name = "path" },
+                { name = "luasnip" },
+            },
+
+            snippet = {
+                expand = function(args)
+                    require("luasnip").lsp_expand(args.body)
+                end,
             },
         })
 
-        lsp.setup()
-    end
+        vim.diagnostic.config({
+            signs = {
+                text = {
+                    [vim.diagnostic.severity.ERROR] = "E",
+                    [vim.diagnostic.severity.WARN] = "W",
+                    [vim.diagnostic.severity.HINT] = "H",
+                    [vim.diagnostic.severity.INFO] = "I",
+                },
+            },
+        })
+    end,
 }
