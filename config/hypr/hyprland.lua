@@ -1,13 +1,12 @@
 -- ============================================================
 -- Hyprland configuration
--- Migrated from hyprland.conf to Lua (Hyprland 0.55+)
 -- ============================================================
 
-local terminal = "kitty"
-local fileManager = "nautilus"
-local menu = "wofi --show drun"
+local TERMINAL          = "kitty"
+local FILE_MANAGER      = "nautilus"
+local MENU              = "wofi --show drun"
+local MAIN_MOD          = "ALT"
 
-local mainMod = "ALT"
 
 -- ============================================================
 -- MONITORS
@@ -32,7 +31,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("firefox")
 
     hl.exec_cmd("hyprctl dispatch workspace 2")
-    hl.exec_cmd(terminal)
+    hl.exec_cmd(TERMINAL)
 
     hl.exec_cmd("waybar")
     hl.exec_cmd("hyprpaper")
@@ -130,177 +129,39 @@ hl.config({
 -- ANIMATIONS
 -- ============================================================
 
-hl.config({
-    animations = {
-        enabled = true,
-    },
-})
+hl.config({ animations = { enabled = true, }, })
 
 hl.curve("easeOutQuint", {
     type = "bezier",
-    points = {
-        { 0.23, 1 },
-        { 0.32, 1 },
-    },
+    points = { { 0.23, 1 }, { 0.32, 1 }, },
 })
 
 hl.curve("easeInOutCubic", {
     type = "bezier",
-    points = {
-        { 0.65, 0.05 },
-        { 0.36, 1 },
-    },
+    points = { { 0.65, 0.05 }, { 0.36, 1 }, },
 })
 
 hl.curve("linear", {
     type = "bezier",
-    points = {
-        { 0, 0 },
-        { 1, 1 },
-    },
+    points = { { 0, 0 }, { 1, 1 }, },
 })
 
 hl.curve("almostLinear", {
     type = "bezier",
-    points = {
-        { 0.5, 0.5 },
-        { 0.75, 1 },
-    },
+    points = { { 0.5, 0.5 }, { 0.75, 1 }, },
 })
 
 hl.curve("quick", {
     type = "bezier",
-    points = {
-        { 0.15, 0 },
-        { 0.1, 1 },
-    },
+    points = { { 0.15, 0 }, { 0.1, 1 }, },
 })
 
 
 hl.animation({
     leaf = "global",
     enabled = true,
-    speed = 10,
+    speed = 8,
     bezier = "default",
-})
-
-hl.animation({
-    leaf = "border",
-    enabled = true,
-    speed = 5.39,
-    bezier = "easeOutQuint",
-})
-
-hl.animation({
-    leaf = "windows",
-    enabled = true,
-    speed = 4.79,
-    bezier = "easeOutQuint",
-})
-
-hl.animation({
-    leaf = "windowsIn",
-    enabled = true,
-    speed = 4.1,
-    bezier = "easeOutQuint",
-    style = "popin 87%",
-})
-
-hl.animation({
-    leaf = "windowsOut",
-    enabled = true,
-    speed = 1.49,
-    bezier = "linear",
-    style = "popin 87%",
-})
-
-hl.animation({
-    leaf = "fadeIn",
-    enabled = true,
-    speed = 1.73,
-    bezier = "almostLinear",
-})
-
-hl.animation({
-    leaf = "fadeOut",
-    enabled = true,
-    speed = 1.46,
-    bezier = "almostLinear",
-})
-
-hl.animation({
-    leaf = "fade",
-    enabled = true,
-    speed = 3.03,
-    bezier = "quick",
-})
-
-hl.animation({
-    leaf = "layers",
-    enabled = true,
-    speed = 3.81,
-    bezier = "easeOutQuint",
-})
-
-hl.animation({
-    leaf = "layersIn",
-    enabled = true,
-    speed = 4,
-    bezier = "easeOutQuint",
-    style = "fade",
-})
-
-hl.animation({
-    leaf = "layersOut",
-    enabled = true,
-    speed = 1.5,
-    bezier = "linear",
-    style = "fade",
-})
-
-hl.animation({
-    leaf = "fadeLayersIn",
-    enabled = true,
-    speed = 1.79,
-    bezier = "almostLinear",
-})
-
-hl.animation({
-    leaf = "fadeLayersOut",
-    enabled = true,
-    speed = 1.39,
-    bezier = "almostLinear",
-})
-
-hl.animation({
-    leaf = "workspaces",
-    enabled = true,
-    speed = 1.94,
-    bezier = "almostLinear",
-    style = "fade",
-})
-
-hl.animation({
-    leaf = "workspacesIn",
-    enabled = true,
-    speed = 1.21,
-    bezier = "almostLinear",
-    style = "fade",
-})
-
-hl.animation({
-    leaf = "workspacesOut",
-    enabled = true,
-    speed = 1.94,
-    bezier = "almostLinear",
-    style = "fade",
-})
-
-hl.animation({
-    leaf = "zoomFactor",
-    enabled = true,
-    speed = 7,
-    bezier = "quick",
 })
 
 
@@ -325,38 +186,38 @@ hl.device({
 -- ============================================================
 
 -- Terminal
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
+hl.bind(MAIN_MOD .. " + Q", hl.dsp.exec_cmd(TERMINAL))
 
 -- Kill active window
-hl.bind(mainMod .. " + C", hl.dsp.window.kill())
+hl.bind(MAIN_MOD .. " + C", hl.dsp.window.kill())
 
 -- Exit Hyprland
-hl.bind(mainMod .. " + M", hl.dsp.exit())
+hl.bind(MAIN_MOD .. " + M", hl.dsp.exit())
 
 -- File manager
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(MAIN_MOD .. " + E", hl.dsp.exec_cmd(FILE_MANAGER))
 
 -- Toggle floating
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(MAIN_MOD .. " + V", hl.dsp.window.float({ action = "toggle" }))
 
 -- Menu
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
+hl.bind(MAIN_MOD .. " + R", hl.dsp.exec_cmd(MENU))
 
 -- Dwindle pseudotile
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo({ action= "toggle"}))
+hl.bind(MAIN_MOD .. " + P", hl.dsp.window.pseudo({ action= "toggle"}))
 
 -- Dwindle split
-hl.bind(mainMod .. " + SHIFT + J", hl.dsp.layout("togglesplit"))
+hl.bind(MAIN_MOD .. " + SHIFT + J", hl.dsp.layout("togglesplit"))
 
 -- Fullscreen
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
+hl.bind(MAIN_MOD .. " + F", hl.dsp.window.fullscreen())
 
 
 -- Focus movement
-hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
+hl.bind(MAIN_MOD .. " + H", hl.dsp.focus({ direction = "left" }))
+hl.bind(MAIN_MOD .. " + L", hl.dsp.focus({ direction = "right" }))
+hl.bind(MAIN_MOD .. " + K", hl.dsp.focus({ direction = "up" }))
+hl.bind(MAIN_MOD .. " + J", hl.dsp.focus({ direction = "down" }))
 
 
 -- ============================================================
@@ -364,21 +225,21 @@ hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
 -- ============================================================
 
 for i = 1, 9 do
-    -- Switch to workspace (Corrected method: hl.dsp.workspace.focus)
+    -- Switch to workspace
     hl.bind(
-        mainMod .. " + " .. tostring(i),
+        MAIN_MOD .. " + " .. tostring(i),
         hl.dsp.focus({ workspace = tostring(i) })
     )
 
-    -- Move focused window to workspace (Corrected method: hl.dsp.window.movetoworkspace)
+    -- Move focused window to workspace
     hl.bind(
-        mainMod .. " + SHIFT + " .. tostring(i),
+        MAIN_MOD .. " + SHIFT + " .. tostring(i),
         hl.dsp.window.move({ workspace = tostring(i) })
     )
 end
 
-hl.bind(mainMod .. " + 0", hl.dsp.window.move({ workspace = "10" }))
-hl.bind(mainMod .. " + SHIFT + 0", hl.dsp.window.move({ workspace = "10"}))
+hl.bind(MAIN_MOD .. " + 0", hl.dsp.window.move({ workspace = "10" }))
+hl.bind(MAIN_MOD .. " + SHIFT + 0", hl.dsp.window.move({ workspace = "10"}))
 
 
 -- ============================================================
