@@ -6,6 +6,7 @@ local TERMINAL          = "kitty"
 local FILE_MANAGER      = "nautilus"
 local MENU              = "wofi --show drun"
 local MAIN_MOD          = "ALT"
+local BROWSER           = "firefox"
 
 
 -- ============================================================
@@ -25,12 +26,7 @@ hl.monitor({
 -- ============================================================
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
-
-    hl.exec_cmd("hyprctl dispatch workspace 1")
-    hl.exec_cmd("firefox")
-
-    hl.exec_cmd("hyprctl dispatch workspace 2")
+    hl.exec_cmd(BROWSER)
     hl.exec_cmd(TERMINAL)
 
     hl.exec_cmd("waybar")
@@ -53,9 +49,9 @@ hl.env("HYPRCURSOR_SIZE", "24")
 hl.config({
     general = {
         gaps_in = 2,
-        gaps_out = 0,
+        gaps_out = 30,
 
-        border_size = 2,
+        border_size = 3,
 
         ["col.active_border"] = {
             colors = {
