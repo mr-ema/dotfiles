@@ -2,7 +2,7 @@
   "layer": "bottom",
   "position": "top",
   "height": 40,
-  "spacing": 2,
+  "spacing": 1,
   "exclusive": true,
   "gtk-layer-shell": true,
   "passthrough": false,
@@ -10,8 +10,7 @@
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["mpris"],
   "modules-right": [
-    "cpu",
-    "memory",
+    "group/system",
     "pulseaudio",
     "clock",
     "clock#simpleclock",
@@ -19,6 +18,20 @@
     "custom/notification",
     "custom/power",
   ],
+  "group/system": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "memory",
+      "disk",
+    ],
+
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": false,
+      "click-to-reveal": true
+    }
+  },
   "custom/spotify": {
     "format": "  {}",
     "return-type": "json",
@@ -58,7 +71,7 @@
     "format": " {:%H:%M}",
   },
   "clock": {
-    "format": " {:L%a %d %b}",
+    "format": " {:L%d/%m/%Y}",
     "calendar": {
       "format": {
         "days": "<span weight='normal'>{}</span>",
@@ -79,14 +92,17 @@
     "interval": 1,
   },
   "memory": {
-    "format": " {used:0.1f}Gi",
+    "format": "M {used:0.1f}Gi",
+  },
+  "disk": {
+    "format": "D {percentage_used}%",
   },
   "pulseaudio": {
-    "format": "{icon} {volume}%",
+    "format": "{icon}{volume}%",
     "format-muted": "  muted",
     "format-icons": {
       "headphone": "",
-      "default": [" ", " ", " "],
+      "default": ["", " ", " "],
     },
     "on-click": "pavucontrol",
   },

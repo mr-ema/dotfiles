@@ -21,25 +21,26 @@
 
 * {
   font-family: "JetbrainsMono Nerd Font", monospace;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
 
   min-height: 0;
   min-width: 0;
-
-  border-radius: 6px;
 }
 
 #waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
   background-color: @bg;
+  color: @blue;
   border-radius: 0;
 }
 
 #waybar.empty #window {
   background-color: transparent;
 }
+
+#window { opacity: 0.6; }
 
 button {
   background: transparent;
@@ -50,14 +51,16 @@ button {
 
 #workspaces {
   background: @fg;
-  margin-right: 1em;
+  margin: 0.3rem 0rem;
+  margin-right: 0.8rem;
 }
 
 #workspaces button {
   color: #babbf1;
   padding: 0.3rem 0.8rem;
-  margin: 0.45rem 0.25rem;
   opacity: 0.6;
+  border-radius: 0;
+  border: 1px solid @gray;
 }
 
 #workspaces button.active {
@@ -74,11 +77,12 @@ button {
 /* ===== GENERIC MODULE STYLE ===== */
 
 #custom-music, #tray, #backlight, #clock, #battery, #pulseaudio,
-#network, #cpu, #memory, #custom-lock, #custom-power, #custom-weather,
+#network, #cpu, #memory, #disk, #custom-lock, #custom-power, #custom-weather,
 #custom-uptime, #temperature, #idle_inhibitor, #custom-docker {
   background-color: @fg;
+  color: @blue;
 
-  padding: 0.3rem 0.8rem;
+  padding: 0rem 0.8rem;
   margin: 0.45rem 0.25rem;
 }
 
