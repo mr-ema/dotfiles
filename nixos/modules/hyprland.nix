@@ -47,5 +47,7 @@
     nautilus            # file manager
     gvfs                # file manager lib
     polkit_gnome        # authentication agent
+    playerctl           # media player
+    wlogout             # graphical power manager
   ];
 }
