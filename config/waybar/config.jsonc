@@ -43,6 +43,7 @@
   "mpris": {
     "dynamic-order": ["artist", "title"],
     "format": "{player_icon} {dynamic}",
+    "max-length": 60,
     "format-paused": "{status_icon} <i>{dynamic}</i>",
     "status-icons": {
       "paused": "",
@@ -60,6 +61,8 @@
   },
   "hyprland/window": {
     "format": "{title}",
+    "max-length": 40,
+    "separate-outputs": true,
   },
   "tray": {
     "show-passive-items": true,
