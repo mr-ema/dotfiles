@@ -35,11 +35,17 @@ return {
                 remap = false,
             }
 
-            vim.keymap.set( "n", "[d", vim.diagnostic.goto_prev, opts)
-            vim.keymap.set( "n", "]d", vim.diagnostic.goto_next, opts)
+            vim.keymap.set("n", "[d", function()
+                vim.diagnostic.jump({ count = -1, float = true })
+            end, opts)
+
+            vim.keymap.set("n", "]d", function()
+                vim.diagnostic.jump({ count = 1, float = true })
+            end, opts)
+
             vim.keymap.set( "n", "<space>dl", "<cmd>Telescope diagnostics<cr>", opts)
-            vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
-            vim.keymap.set("n", "<F3>", function() vim.lsp.buf.format({ async = true }) end, opts)
+            vim.keymap.set( "n", "<F2>", vim.lsp.buf.rename, opts)
+            vim.keymap.set( "n", "<F3>", function() vim.lsp.buf.format({ async = true }) end, opts)
         end
 
         -- Common configuration for all LSP servers
