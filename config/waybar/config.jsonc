@@ -64,10 +64,10 @@
   },
   "clock#simpleclock": {
     "tooltip": false,
-    "format": " {:%H:%M}",
+    "format": "  {:%H:%M}",
   },
   "clock": {
-    "format": " {:L%d/%m/%Y}",
+    "format": "  {:L%d/%m/%Y}",
     "calendar": {
       "format": {
         "days": "<span weight='normal'>{}</span>",
@@ -83,7 +83,7 @@
     "tooltip-format": "<span color='#cdd6f4' font='Lexend 16'><tt><small>{calendar}</small></tt></span>",
   },
   "cpu": {
-    "format": " {usage}%",
+    "format": "  {usage}%",
     "tooltip": true,
     "interval": 1,
   },
@@ -94,10 +94,10 @@
     "format": "D {percentage_used}%",
   },
   "pulseaudio": {
-    "format": "{icon}{volume}%",
+    "format": "{icon} {volume}%",
     "format-muted": "  muted",
     "format-icons": {
-      "headphone": "",
+      "headphone": " ",
       "default": ["", " ", " "],
     },
     "on-click": "pavucontrol",
@@ -117,8 +117,8 @@
     "exec-if": "which swaync-client",
     "format": "{icon}",
     "format-icons": {
-      "none": "󰅺",
-      "notification": "󰡟",
+      "none": "󰅺 ",
+      "notification": "󰡟 ",
     },
     "on-click": "sleep 0.1 && swaync-client -t -sw",
     "return-type": "json",
