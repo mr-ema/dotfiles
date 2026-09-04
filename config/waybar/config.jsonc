@@ -32,14 +32,6 @@
       "click-to-reveal": true
     }
   },
-  "custom/spotify": {
-    "format": "  {}",
-    "return-type": "json",
-    "on-click": "playerctl -p spotify play-pause",
-    "on-click-right": "spotifatius toggle-liked",
-    "on-click-middle": "playerctl -p spotify next",
-    "exec": "spotifatius monitor",
-  },
   "mpris": {
     "dynamic-order": ["artist", "title"],
     "format": "{player_icon} {dynamic}",
@@ -49,7 +41,9 @@
       "paused": "",
     },
     "player-icons": {
-      "default": "",
+      "default": " ",
+      "spotify": " ",
+      "firefox": " "
     },
   },
   "hyprland/workspaces": {
