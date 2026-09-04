@@ -86,6 +86,9 @@ button {
   margin: 0.45rem 0.25rem;
 }
 
+#custom-power { margin-right: 0.6rem; }
+#workspaces   { margin-left:  0.6rem;  }
+
 /* ===== MODULE COLORS ===== */
 
 #clock,
