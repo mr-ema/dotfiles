@@ -46,12 +46,20 @@ button {
   background: transparent;
 }
 
+.modules-left {
+    margin-left: 0.8rem;
+}
+
+.modules-right {
+    margin-right: 0.8rem;
+}
+
 
 /* ===== WORKSPACES ===== */
 
 #workspaces {
   background: @fg;
-  margin: 0.3rem 0rem;
+  margin: 0.6rem 0rem;
   margin-right: 0.8rem;
 }
 
@@ -77,17 +85,15 @@ button {
 /* ===== GENERIC MODULE STYLE ===== */
 
 #custom-music, #tray, #backlight, #clock, #battery, #pulseaudio,
-#network, #cpu, #memory, #disk, #custom-lock, #custom-power, #custom-weather,
+#network, #cpu, #memory, #disk, #custom-lock, #custom-weather,
 #custom-uptime, #temperature, #idle_inhibitor, #custom-docker {
   background-color: @fg;
+  border-radius: 0.45rem;
   color: @blue;
 
-  padding: 0rem 0.8rem;
-  margin: 0.45rem 0.25rem;
+  padding: 0rem 0.69rem;
+  margin: 0.6rem 0.25rem;
 }
-
-#custom-power { margin-right: 0.6rem; }
-#workspaces   { margin-left:  0.6rem;  }
 
 /* ===== MODULE COLORS ===== */
 

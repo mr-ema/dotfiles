@@ -2,7 +2,7 @@
   "layer": "bottom",
   "position": "top",
   "height": 40,
-  "spacing": 1,
+  "spacing": 0,
   "exclusive": true,
   "gtk-layer-shell": true,
   "passthrough": false,
@@ -10,20 +10,32 @@
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["mpris"],
   "modules-right": [
-    "group/system",
     "pulseaudio",
-    "clock",
-    "clock#simpleclock",
+    "group/system",
+    "group/clock",
     "tray",
     "custom/notification",
-    "custom/power",
   ],
   "group/system": {
     "orientation": "horizontal",
     "modules": [
       "cpu",
+      "network",
       "memory",
       "disk",
+    ],
+
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": false,
+      "click-to-reveal": true
+    }
+  },
+  "group/clock": {
+    "orientation": "horizontal",
+    "modules": [
+      "clock#simpleclock",
+      "clock",
     ],
 
     "drawer": {
@@ -58,16 +70,21 @@
     "max-length": 40,
     "separate-outputs": true,
   },
+  "network": {
+    "format-wifi": " ",
+    "format-ethernet": "󰈀 ",
+    "format-disconnected": "󰤮 "
+  },
   "tray": {
     "show-passive-items": true,
     "spacing": 10,
   },
   "clock#simpleclock": {
     "tooltip": false,
-    "format": "  {:%H:%M}",
+    "format": "{:%H:%M}",
   },
   "clock": {
-    "format": "  {:L%d/%m/%Y}",
+    "format": "󰃭 {:L%d/%m/%Y}",
     "calendar": {
       "format": {
         "days": "<span weight='normal'>{}</span>",
@@ -83,33 +100,24 @@
     "tooltip-format": "<span color='#cdd6f4' font='Lexend 16'><tt><small>{calendar}</small></tt></span>",
   },
   "cpu": {
-    "format": "  {usage}%",
+    "format": " {usage}%",
     "tooltip": true,
-    "interval": 1,
+    "interval": 1
   },
-  "memory": {
-    "format": "M {used:0.1f}Gi",
-  },
-  "disk": {
-    "format": "D {percentage_used}%",
-  },
+  "memory": { "format": "M {used:0.1f}Gi" },
+  "disk":   { "format": "D {percentage_used}%" },
   "pulseaudio": {
-    "format": "{icon} {volume}%",
+    "format": "{icon}{volume}%",
     "format-muted": "  muted",
     "format-icons": {
       "headphone": " ",
-      "default": ["", " ", " "],
+      "default": [" ", " ", "  "]
     },
-    "on-click": "pavucontrol",
+    "on-click": "pavucontrol"
   },
   "custom/sep": {
     "format": "|",
-    "tooltip": false,
-  },
-  "custom/power": {
-    "tooltip": false,
-    "on-click": "wlogout -p layer-shell &",
-    "format": "⏻",
+    "tooltip": false
   },
   "custom/notification": {
     "escape": true,
@@ -118,10 +126,10 @@
     "format": "{icon}",
     "format-icons": {
       "none": "󰅺 ",
-      "notification": "󰡟 ",
+      "notification": "󰡟 "
     },
     "on-click": "sleep 0.1 && swaync-client -t -sw",
     "return-type": "json",
-    "tooltip": false,
-  },
+    "tooltip": false
+  }
 }
